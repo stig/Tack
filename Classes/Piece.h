@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class Player;
+@class Location;
 
-@interface Piece : NSObject {
+@interface Piece : NSObject <NSCopying> {
     Player *owner;
-    NSIndexPath *location;
+    Location *location;
 }
 
-@property(copy) NSIndexPath *location;
-@property(assign) Player *owner;
+@property(copy) Location *location;
+@property(retain) Player *owner;
 
 @end

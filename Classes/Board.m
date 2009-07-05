@@ -7,6 +7,7 @@
 //
 
 #import "Board.h"
+#import "Location.h"
 
 @implementation Board
 
@@ -44,16 +45,16 @@
 
 #pragma mark -
 
-- (id)pieceAtIndexPath:(NSIndexPath*)indexPath {
-    return [self pieceAtColumn:[indexPath indexAtPosition:0]
-                           row:[indexPath indexAtPosition:1]];
+- (id)pieceAtIndexPath:(Location*)loc {
+    return [self pieceAtColumn:[loc column]
+                           row:[loc row]];
         
 }
 
-- (void)setPiece:(id)piece atIndexPath:(NSIndexPath*)indexPath {
+- (void)setPiece:(id)piece atIndexPath:(Location*)loc {
     [self setPiece:piece
-          atColumn:[indexPath indexAtPosition:0]
-               row:[indexPath indexAtPosition:1]];
+          atColumn:[loc column]
+               row:[loc row]];
    
 }
 

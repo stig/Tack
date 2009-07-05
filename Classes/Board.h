@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Location;
 
 @interface Board : NSObject {
     NSMutableArray *grid;
@@ -17,8 +18,8 @@
 
 - (id)initWithColumns:(NSUInteger)x rows:(NSUInteger)y;
 
-- (id)pieceAtIndexPath:(NSIndexPath*)indexPath;
-- (void)setPiece:(id)piece atIndexPath:(NSIndexPath*)indexPath;
+- (id)pieceAtIndexPath:(Location*)loc;
+- (void)setPiece:(id)piece atIndexPath:(Location*)loc;
 
 - (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r;
 - (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r;

@@ -7,12 +7,27 @@
 //
 
 #import "Piece.h"
-#import "Player.h"
-
 
 @implementation Piece
 
 @synthesize location;
 @synthesize owner;
+
+- (id)copyWithZone:(NSZone*)zone {
+    Piece *copy = [[self class] new];
+    copy.location = self.location;
+    copy.owner = self.owner;
+    return copy;
+}
+
+- (BOOL)isEqual:(id)obj {
+    return [self class] == [obj class]
+        && [self.location isEqual:[obj location]]
+        && [self.owner isEqual:[obj owner]];
+}
+
+- (NSUInteger)hash {
+    return [location hash] + [owner hash];
+}
 
 @end

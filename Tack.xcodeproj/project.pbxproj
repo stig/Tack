@@ -15,7 +15,6 @@
 		2899E5220DE3E06400AC0155 /* TackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TackViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TackViewController.m */; };
-		BC1D591F1000E9450068B45A /* NSIndexPath+ColumnRow.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D591E1000E9450068B45A /* NSIndexPath+ColumnRow.m */; };
 		BC1D59271000E94D0068B45A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
 		BC1D59281000E94D0068B45A /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
 		BC1D59291000E94D0068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
@@ -24,6 +23,9 @@
 		BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5AA5100127E80068B45A /* PlayerTest.m */; };
 		BC1D5AE010012B040068B45A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
 		BC1D5AF610012E690068B45A /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
+		BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B2F100131EC0068B45A /* PieceTest.m */; };
+		BC1D5B331001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
+		BC1D5B341001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +42,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Tack_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tack_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Tack-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tack-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		BC1D591D1000E9450068B45A /* NSIndexPath+ColumnRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+ColumnRow.h"; sourceTree = "<group>"; };
-		BC1D591E1000E9450068B45A /* NSIndexPath+ColumnRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+ColumnRow.m"; sourceTree = "<group>"; };
 		BC1D59211000E94D0068B45A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		BC1D59221000E94D0068B45A /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		BC1D59231000E94D0068B45A /* Piece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piece.h; sourceTree = "<group>"; };
@@ -55,6 +55,10 @@
 		BC1D5A4C100127960068B45A /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = "build/Debug-iphonesimulator/Tests.octest"; sourceTree = "<group>"; };
 		BC1D5AA4100127E80068B45A /* PlayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTest.h; sourceTree = "<group>"; };
 		BC1D5AA5100127E80068B45A /* PlayerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTest.m; sourceTree = "<group>"; };
+		BC1D5B2E100131EC0068B45A /* PieceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieceTest.h; sourceTree = "<group>"; };
+		BC1D5B2F100131EC0068B45A /* PieceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieceTest.m; sourceTree = "<group>"; };
+		BC1D5B311001328F0068B45A /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		BC1D5B321001328F0068B45A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,6 @@
 			children = (
 				BC1D592A1000E9570068B45A /* View */,
 				BC1D59201000E94D0068B45A /* Model */,
-				BC1D591C1000E9450068B45A /* Utils */,
 				1D3623240D0F684500981E51 /* TackAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TackAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* TackViewController.h */,
@@ -146,18 +149,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC1D591C1000E9450068B45A /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				BC1D591D1000E9450068B45A /* NSIndexPath+ColumnRow.h */,
-				BC1D591E1000E9450068B45A /* NSIndexPath+ColumnRow.m */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
 		BC1D59201000E94D0068B45A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC1D5B311001328F0068B45A /* Location.h */,
+				BC1D5B321001328F0068B45A /* Location.m */,
 				BC1D59231000E94D0068B45A /* Piece.h */,
 				BC1D59241000E94D0068B45A /* Piece.m */,
 				BC1D59211000E94D0068B45A /* Player.h */,
@@ -182,6 +178,8 @@
 			children = (
 				BC1D5AA4100127E80068B45A /* PlayerTest.h */,
 				BC1D5AA5100127E80068B45A /* PlayerTest.m */,
+				BC1D5B2E100131EC0068B45A /* PieceTest.h */,
+				BC1D5B2F100131EC0068B45A /* PieceTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -285,11 +283,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TackAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* TackViewController.m in Sources */,
-				BC1D591F1000E9450068B45A /* NSIndexPath+ColumnRow.m in Sources */,
 				BC1D59271000E94D0068B45A /* Player.m in Sources */,
 				BC1D59281000E94D0068B45A /* Piece.m in Sources */,
 				BC1D59291000E94D0068B45A /* Board.m in Sources */,
 				BC1D592D1000E9570068B45A /* Grid.m in Sources */,
+				BC1D5B331001328F0068B45A /* Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +298,8 @@
 				BC1D5AF610012E690068B45A /* Piece.m in Sources */,
 				BC1D5AE010012B040068B45A /* Player.m in Sources */,
 				BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */,
+				BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */,
+				BC1D5B341001328F0068B45A /* Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
