@@ -41,7 +41,7 @@
 #pragma mark equality
 
 - (BOOL)isEqual:(id)obj {
-    return [self class] == [obj class]
+    return [obj isMemberOfClass:[self class]]
         && [self column] == [obj column]
         && [self row] == [obj row];
 }

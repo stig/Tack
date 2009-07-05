@@ -11,6 +11,8 @@
 
 @implementation Board
 
+@synthesize grid;
+
 - (id)initWithColumns:(NSUInteger)columns rows:(NSUInteger)rows {
     self = [super init];
     if (self) {     
@@ -34,6 +36,13 @@
     return [self initWithColumns:3 rows:3];
 }
 
+- (id)copyWithZone:(NSZone*)zone {
+    Board *copy = [[Board alloc] init];
+    copy.grid = [[NSMutableArray alloc] initWithArray:self.grid
+                                            copyItems:YES];
+    return copy;
+}
+
 - (void)dealloc {
     [grid release];
     [super dealloc];
@@ -43,15 +52,27 @@
     return [grid description];
 }
 
-#pragma mark -
+#pragma mark Equality
 
-- (id)pieceAtIndexPath:(Location*)loc {
+- (BOOL)isEqual:(id)obj {
+    return [obj isMemberOfClass:[self class]]
+        && [[obj grid] isEqual:self.grid];
+    
+}
+
+- (NSUInteger)hash {
+    return [self.grid hash];
+}
+
+#pragma mark Piece access
+
+- (id)pieceAtLocation:(Location*)loc {
     return [self pieceAtColumn:[loc column]
                            row:[loc row]];
         
 }
 
-- (void)setPiece:(id)piece atIndexPath:(Location*)loc {
+- (void)setPiece:(id)piece atLocation:(Location*)loc {
     [self setPiece:piece
           atColumn:[loc column]
                row:[loc row]];

@@ -26,6 +26,8 @@
 		BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B2F100131EC0068B45A /* PieceTest.m */; };
 		BC1D5B331001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
 		BC1D5B341001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
+		BC1D5BAE100162760068B45A /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5BAD100162760068B45A /* BoardTest.m */; };
+		BC1D5BAF100162840068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,13 +54,15 @@
 		BC1D592C1000E9570068B45A /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 		BC1D59351000E9860068B45A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		BC1D59BA100111800068B45A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		BC1D5A4C100127960068B45A /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = "build/Debug-iphonesimulator/Tests.octest"; sourceTree = "<group>"; };
+		BC1D5A4C100127960068B45A /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1D5AA4100127E80068B45A /* PlayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTest.h; sourceTree = "<group>"; };
 		BC1D5AA5100127E80068B45A /* PlayerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTest.m; sourceTree = "<group>"; };
 		BC1D5B2E100131EC0068B45A /* PieceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieceTest.h; sourceTree = "<group>"; };
 		BC1D5B2F100131EC0068B45A /* PieceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieceTest.m; sourceTree = "<group>"; };
 		BC1D5B311001328F0068B45A /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		BC1D5B321001328F0068B45A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		BC1D5BAC100162760068B45A /* BoardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTest.h; sourceTree = "<group>"; };
+		BC1D5BAD100162760068B45A /* BoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,8 @@
 				BC1D5AA5100127E80068B45A /* PlayerTest.m */,
 				BC1D5B2E100131EC0068B45A /* PieceTest.h */,
 				BC1D5B2F100131EC0068B45A /* PieceTest.m */,
+				BC1D5BAC100162760068B45A /* BoardTest.h */,
+				BC1D5BAD100162760068B45A /* BoardTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -295,11 +301,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1D5B341001328F0068B45A /* Location.m in Sources */,
 				BC1D5AF610012E690068B45A /* Piece.m in Sources */,
+				BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */,
 				BC1D5AE010012B040068B45A /* Player.m in Sources */,
 				BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */,
-				BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */,
-				BC1D5B341001328F0068B45A /* Location.m in Sources */,
+				BC1D5BAF100162840068B45A /* Board.m in Sources */,
+				BC1D5BAE100162760068B45A /* BoardTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

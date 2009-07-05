@@ -14,12 +14,13 @@
     NSMutableArray *grid;
 }
 
-@property (readonly) NSUInteger rows, columns;
+@property(retain) NSMutableArray *grid;
+@property(readonly) NSUInteger rows, columns;
 
 - (id)initWithColumns:(NSUInteger)x rows:(NSUInteger)y;
 
-- (id)pieceAtIndexPath:(Location*)loc;
-- (void)setPiece:(id)piece atIndexPath:(Location*)loc;
+- (id)pieceAtLocation:(Location*)loc;
+- (void)setPiece:(id)piece atLocation:(Location*)loc;
 
 - (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r;
 - (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r;

@@ -14,7 +14,6 @@
 @implementation PlayerTest
 
 - (void) testCopy {
-
     NSString *name = @"One";
     Piece *a = [Piece new];
     
@@ -34,7 +33,6 @@
     [one.pieces removeObject:a];
     STAssertEquals([one.pieces count], (NSUInteger)1, nil);
     STAssertEquals([two.pieces count], (NSUInteger)1, nil);
-
 }
 
 @end

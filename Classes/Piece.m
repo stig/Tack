@@ -21,7 +21,7 @@
 }
 
 - (BOOL)isEqual:(id)obj {
-    return [self class] == [obj class]
+    return [obj isMemberOfClass:[self class]]
         && [self.location isEqual:[obj location]]
         && [self.owner isEqual:[obj owner]];
 }
