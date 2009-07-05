@@ -21,6 +21,9 @@
 		BC1D59291000E94D0068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
 		BC1D592D1000E9570068B45A /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D592C1000E9570068B45A /* Grid.m */; };
 		BC1D59361000E9860068B45A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1D59351000E9860068B45A /* QuartzCore.framework */; };
+		BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5AA5100127E80068B45A /* PlayerTest.m */; };
+		BC1D5AE010012B040068B45A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
+		BC1D5AF610012E690068B45A /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		BC1D592C1000E9570068B45A /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 		BC1D59351000E9860068B45A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		BC1D59BA100111800068B45A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		BC1D5A4C100127960068B45A /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.octest; path = "build/Debug-iphonesimulator/Tests.octest"; sourceTree = "<group>"; };
+		BC1D5AA4100127E80068B45A /* PlayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTest.h; sourceTree = "<group>"; };
+		BC1D5AA5100127E80068B45A /* PlayerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,13 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BC1D59361000E9860068B45A /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1D5A49100127960068B45A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Tack.app */,
+				BC1D5A4C100127960068B45A /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +105,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				BC1D59351000E9860068B45A /* QuartzCore.framework */,
+				BC1D5AA2100127C50068B45A /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -124,6 +138,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC1D59351000E9860068B45A /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -143,10 +158,10 @@
 		BC1D59201000E94D0068B45A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC1D59211000E94D0068B45A /* Player.h */,
-				BC1D59221000E94D0068B45A /* Player.m */,
 				BC1D59231000E94D0068B45A /* Piece.h */,
 				BC1D59241000E94D0068B45A /* Piece.m */,
+				BC1D59211000E94D0068B45A /* Player.h */,
+				BC1D59221000E94D0068B45A /* Player.m */,
 				BC1D59251000E94D0068B45A /* Board.h */,
 				BC1D59261000E94D0068B45A /* Board.m */,
 			);
@@ -160,6 +175,15 @@
 				BC1D592C1000E9570068B45A /* Grid.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		BC1D5AA2100127C50068B45A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BC1D5AA4100127E80068B45A /* PlayerTest.h */,
+				BC1D5AA5100127E80068B45A /* PlayerTest.m */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +206,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Tack.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BC1D5A4B100127960068B45A /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC1D5AA3100127C50068B45A /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				BC1D5A47100127960068B45A /* Resources */,
+				BC1D5A48100127960068B45A /* Sources */,
+				BC1D5A49100127960068B45A /* Frameworks */,
+				BC1D5A4A100127960068B45A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = BC1D5A4C100127960068B45A /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -195,6 +237,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Tack */,
+				BC1D5A4B100127960068B45A /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -209,7 +252,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC1D5A47100127960068B45A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BC1D5A4A100127960068B45A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -224,6 +290,16 @@
 				BC1D59281000E94D0068B45A /* Piece.m in Sources */,
 				BC1D59291000E94D0068B45A /* Board.m in Sources */,
 				BC1D592D1000E9570068B45A /* Grid.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC1D5A48100127960068B45A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC1D5AF610012E690068B45A /* Piece.m in Sources */,
+				BC1D5AE010012B040068B45A /* Player.m in Sources */,
+				BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +329,56 @@
 				GCC_PREFIX_HEADER = Tack_Prefix.pch;
 				INFOPLIST_FILE = "Tack-Info.plist";
 				PRODUCT_NAME = Tack;
+			};
+			name = Release;
+		};
+		BC1D5A4D100127970068B45A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		BC1D5A4E100127970068B45A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -290,6 +416,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC1D5AA3100127C50068B45A /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC1D5A4D100127970068B45A /* Debug */,
+				BC1D5A4E100127970068B45A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

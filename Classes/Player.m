@@ -28,5 +28,11 @@
     return [self initWithName:@"Unknown"];
 }
 
+- (id)copyWithZone:(NSZone*)zone {
+    Player *copy = [[[self class] alloc] initWithName:self.name];
+    copy->pieces = [pieces mutableCopy];
+    copy.colour = self.colour;
+    return copy;
+}
 
 @end
