@@ -11,22 +11,22 @@
 
 @implementation Board
 
+@synthesize columns;
+@synthesize rows;
 @synthesize grid;
 
-- (id)initWithColumns:(NSUInteger)columns rows:(NSUInteger)rows {
+- (id)initWithColumns:(NSUInteger)columns_ rows:(NSUInteger)rows_ {
     self = [super init];
-    if (self) {     
-        grid = [[NSMutableArray alloc] initWithCapacity: columns];
-        
+    if (self) {
+        columns = columns_;
+        rows = rows_;
+        grid = [[NSMutableDictionary alloc] initWithCapacity: columns * rows];        
         id null = [NSNull null];
-        for (int i = 0; i < columns; i++) {
-            NSMutableArray *row = [[NSMutableArray alloc] initWithCapacity:rows];
-			
-            for (int j = 0; j < rows; j++)
-                [row addObject:null];
-
-            [grid addObject:row];
-			[row release];
+        for (int i = 0; i < columns; i++) {			
+            for (int j = 0; j < rows; j++) {
+                Location *loc = [[Location alloc] initWithColumn:i row:j];
+                [grid setObject:null forKey:loc];
+            }
         }
     }
     return self;
@@ -38,7 +38,7 @@
 
 - (id)copyWithZone:(NSZone*)zone {
     Board *copy = [[Board alloc] init];
-    copy.grid = [[NSMutableArray alloc] initWithArray:self.grid
+    copy.grid = [[NSMutableDictionary alloc] initWithDictionary:self.grid
                                             copyItems:YES];
     return copy;
 }
@@ -67,12 +67,12 @@
 #pragma mark Piece access
 
 - (id)pieceAtLocation:(Location*)loc {
-    id piece = [[grid objectAtIndex:[loc column]] objectAtIndex:[loc row]];
+    id piece = [grid objectForKey:loc];
 	return piece == [NSNull null] ? nil : piece;
 }
 
 - (void)setPiece:(id)piece atLocation:(Location*)loc {
-    [[grid objectAtIndex:[loc column]] replaceObjectAtIndex:[loc row] withObject:piece];   
+    [grid setObject:piece forKey:loc];
 }
 
 - (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r {
@@ -81,14 +81,6 @@
 
 - (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r {
     [self setPiece:piece atLocation:[[Location alloc] initWithColumn:c row:r]];
-}
-
-- (NSUInteger)columns {
-    return [grid count];
-}
-
-- (NSUInteger)rows {
-    return [[grid lastObject] count];
 }
 
 @end

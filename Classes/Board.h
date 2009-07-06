@@ -11,10 +11,11 @@
 @class Location;
 
 @interface Board : NSObject {
-    NSMutableArray *grid;
+    NSMutableDictionary *grid;
+    NSUInteger rows, columns;
 }
 
-@property(retain) NSMutableArray *grid;
+@property(retain) NSMutableDictionary *grid;
 @property(readonly) NSUInteger rows, columns;
 
 - (id)initWithColumns:(NSUInteger)x rows:(NSUInteger)y;
