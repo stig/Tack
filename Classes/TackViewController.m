@@ -9,6 +9,7 @@
 #import "TackViewController.h"
 #import "Player.h"
 #import "Board.h"
+#import "Piece.h"
 #import "Grid.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -16,9 +17,6 @@
 @interface TackViewController ()
 
 - (Player*)currentPlayer;
-- (CGColorRef)red;
-- (CGColorRef)blue;
-- (CALayer*)playerPiece;
 - (void)togglePlayer;
 - (void)makeAiMove;
 - (void)moveToColumn:(NSUInteger)c row:(NSUInteger)r;
@@ -35,11 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Player *one = [[Player alloc] initWithName:@"Jack"];
-    one.colour = [self red];
-    
+    Player *one = [[Player alloc] initWithName:@"Jack"];    
     Player *two = [[Player alloc] initWithName:@"Jill"];
-    two.colour = [self blue];
     
     players = [[NSArray alloc] initWithObjects:one, two, nil];
     currentPlayer = 0;
@@ -48,8 +43,8 @@
     self.board = [[Board alloc] initWithColumns:3 rows:3];
 
     self.grid.controller = self;
-    self.grid.board = self.board;    
-    [self.grid createGrid];
+    self.grid.model = self.board;    
+    [self.grid refreshBoardView];
     
     self.turn.text = [NSString stringWithFormat:@"Waiting for %@ to begin..", one.name];    
 }
@@ -63,55 +58,30 @@
 
 #pragma mark -
 
-- (CGColorRef)red {
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGFloat rgba[] = { 0.7, 0.0, 0.0, 1.0 };
-    return CGColorCreate(space, rgba);
-}    
-
-- (CGColorRef)blue {
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    CGFloat rgba[] = { 0.0, 0.0, 0.7, 1.0 };
-    return CGColorCreate(space, rgba);
-}
-
 - (Player*)currentPlayer {
     return [players objectAtIndex:currentPlayer];
 }
 
-- (CALayer*)playerPiece {
-    Player *player = [self currentPlayer];
-    
-    CALayer *piece = [CALayer layer];
-    piece.name = player.name;
-    piece.backgroundColor = player.colour;
-    
-    return piece;
-}
-
 - (void)togglePlayer {
     currentPlayer = !currentPlayer;
-    
-    NSString *s = [[players objectAtIndex:currentPlayer] name];
+    self.grid.model = board;
 
-    if (currentPlayer == aiPlayer) {
-        s = [NSString stringWithFormat:@"Waiting for %@ to move...", s];
-        [self performSelector: @selector(makeAiMove) withObject: nil afterDelay: 1.0f];
-        
+    NSString *s = [[self currentPlayer] name];
+
+    if (currentPlayer != aiPlayer) {
+        s = [NSString stringWithFormat:@"Waiting for %@ to move...", s];        
     } else {
         s = [NSString stringWithFormat:@"%@ searching for a move...", s];
+        [self performSelector: @selector(makeAiMove) withObject: nil afterDelay: 1.0f];
     }
-    self.turn.text = s;    
+    self.turn.text = s;
 }
 
 
 - (void)makeAiMove {    
-    for (int c = 0; c < self.board.columns; c++) {
-        for (int r = 0; r < self.board.rows; r++) {
-            CALayer *cell = [self.board pieceAtColumn:c row:r];
-            assert(cell && "no cell at board location!");
-            
-            CALayer *piece = [cell.sublayers lastObject];
+    for (int c = 0; c < board.columns; c++) {
+        for (int r = 0; r < board.rows; r++) {
+            Piece *piece = [board pieceAtColumn:c row:r];
             if (!piece) {
                 [self moveToColumn:c row:r];
                 return;
@@ -123,19 +93,15 @@
 - (void)moveToColumn:(NSUInteger)c row:(NSUInteger)r {
     NSLog(@"%@ moving to <%d,%d>", [[players objectAtIndex:currentPlayer] name], c, r);
     
-    CALayer *cell = [self.board pieceAtColumn:c row:r];
-    assert(cell && "no cell at board location");
-    
-    CALayer *piece = [cell.sublayers lastObject];
+    Piece *piece = [board pieceAtColumn:c row:r];
     if (piece) {
         NSLog(@"Bonk! Cell already occupied.");
         return;
     }
-    
-    piece = [self playerPiece];
-    piece.frame = CGRectInset(cell.bounds, 8, 8);
-    
-    [cell addSublayer:piece];
+
+    piece = [Piece new];
+    piece.owner = [self currentPlayer];
+    [board setPiece:piece atColumn:c row:r];
     
     [self togglePlayer];
 }
@@ -143,9 +109,8 @@
 
 
 - (void)clickInColumn:(NSUInteger)c row:(NSUInteger)r {
-    NSLog(@"%s", _cmd);
     if (currentPlayer == aiPlayer) {
-        NSLog(@"Sorry, it is %@'s turn", [players objectAtIndex:aiPlayer]);
+        NSLog(@"Sorry, it is %@'s turn", [[self currentPlayer] name]);
         return;
     }
     [self moveToColumn:c row:r];

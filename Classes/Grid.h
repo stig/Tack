@@ -4,15 +4,19 @@
 @class Board;
 @class TackViewController;
 
+/// @todo rename to BoardView once refactoring works again...
 @interface Grid : UIView {
+    Board *model;
+    Board *board;
+    
     TackViewController *_controller;
-    Board *_board;
     CGSize cellSize;
 }
 
-@property (retain) Board *board;
+@property(retain) Board *model;
+
 @property (retain) TackViewController *controller;
 
-- (void)createGrid;
+- (void)refreshBoardView;
 
 @end

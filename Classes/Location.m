@@ -38,6 +38,12 @@
                                            row:[self row]];
 }
 
+#pragma mark description
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"[%u,%u]", self.column, self.row];
+}
+
 #pragma mark equality
 
 - (BOOL)isEqual:(id)obj {

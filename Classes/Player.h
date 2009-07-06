@@ -14,12 +14,10 @@
 @interface Player : NSObject <NSCopying> {
     NSString *name;
     NSMutableSet *pieces;
-    CGColorRef colour;
 }
 
 @property(copy) NSString *name;
 @property(retain) NSMutableSet *pieces;
-@property(assign) CGColorRef colour;
 
 - (id)initWithName:(NSString*)name;
 

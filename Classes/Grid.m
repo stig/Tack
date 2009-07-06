@@ -1,11 +1,14 @@
 #import "Grid.h"
+#import "Piece.h"
 #import "Board.h"
+#import "Location.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TackViewController.h"
 
 @implementation Grid
 
-@synthesize board = _board;
+@synthesize model;
+
 @synthesize controller = _controller;
 
 - (void)awakeFromNib {
@@ -14,30 +17,61 @@
     self.layer.backgroundColor = CGColorCreate(space, green);
 }
 
-- (void)createGrid {
+- (CGColorRef)red {
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGFloat rgba[] = { 0.7, 0.0, 0.0, 1.0 };
+    return CGColorCreate(space, rgba);
+}    
+
+- (CGColorRef)blue {
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGFloat rgba[] = { 0.0, 0.0, 0.7, 1.0 };
+    return CGColorCreate(space, rgba);
+}
+
+- (void)refreshBoardView {
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     
     CGSize size = [self bounds].size;
-    cellSize = CGSizeMake(size.width / _board.columns, size.height / _board.rows);
+    cellSize = CGSizeMake(size.width / board.columns, size.height / board.rows);
     
-    for (int r = 0; r < self.board.rows; r++) {
-        for (int c = 0; c < self.board.columns; c++) {
-            CALayer *cell = [self.board pieceAtColumn:c row:r];
+    id player = nil; // hack hack hack.
+    
+    for (int r = 0; r < model.rows; r++) {
+        for (int c = 0; c < model.columns; c++) {
+            Location *loc = [[Location alloc] initWithColumn:c row:r];
+            CALayer *cell = [board pieceAtLocation:loc];
             if (!cell) {
                 cell = [CALayer layer];
-                cell.name = [NSString stringWithFormat:@"cell%u%u", c, r];
-                [self.layer addSublayer: cell];
+                cell.name = [loc description];
+
+                CGFloat cellColour[] = { 0.0, 0.0, 0.0, 0.3 * ((c + r) & 1) };
+                cell.backgroundColor = CGColorCreate(space, cellColour);
+                
+                [self.layer addSublayer:cell];
+                [board setPiece:cell atLocation:loc];
             }
             
-            CGFloat cellColour[] = { 0.0, 0.0, 0.0, 0.3 * ((c + r) & 1) };
-            cell.backgroundColor = CGColorCreate(space, cellColour);
-            
+            // Refresh the frame, in case our dimensions have changed.
+            // May not be necessary, since we're in iPhone and dimensions cannot change...
+            // But let's roll with it.
             cell.frame = CGRectMake(cellSize.width * c,
                                     cellSize.height * r,
                                     cellSize.width,
                                     cellSize.height);
 
-            [_board setPiece:cell atColumn:c row:r];
+
+            Piece *piece = [model pieceAtLocation:loc];
+            if (piece) {
+                CALayer *uiPiece = [CALayer layer];
+                uiPiece.name = [piece description];
+                if (!player) player = piece.owner;
+                uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
+                uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
+
+                [cell addSublayer: uiPiece];
+            }
+            
         }
     }
 }
@@ -50,5 +84,24 @@
                            row:(int)(point.y / cellSize.height)];
     
 }
+
+- (void)setModel:(Board*)newModel {
+    if ([model isEqual:newModel]) {
+        NSLog(@"New model is identical to existing.");
+        return;
+    }
+    
+    [model autorelease];
+    model = [newModel copy];
+    
+    if (!board) {
+        NSLog(@"initially creating board for holding CALayers");
+        board = [[Board alloc] initWithColumns:model.columns
+                                          rows:model.rows];
+    }
+
+    [self refreshBoardView];
+}
+
 
 @end
