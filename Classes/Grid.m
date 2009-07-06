@@ -65,10 +65,14 @@
             if (piece) {
                 CALayer *uiPiece = [CALayer layer];
                 uiPiece.name = [piece description];
-                if (!player) player = piece.owner;
+                [uiPiece setValue:piece forKey:@"underlyingPiece"];
+                                
+                if (!player)
+                    player = piece.owner;
                 uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
                 uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
-
+                
+                [cell.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
                 [cell addSublayer: uiPiece];
             }
             

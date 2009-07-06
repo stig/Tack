@@ -67,25 +67,20 @@
 #pragma mark Piece access
 
 - (id)pieceAtLocation:(Location*)loc {
-    return [self pieceAtColumn:[loc column]
-                           row:[loc row]];
-        
-}
-
-- (void)setPiece:(id)piece atLocation:(Location*)loc {
-    [self setPiece:piece
-          atColumn:[loc column]
-               row:[loc row]];
-   
-}
-
-- (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r {
-    id piece = [[grid objectAtIndex:c] objectAtIndex:r];
+    id piece = [[grid objectAtIndex:[loc column]] objectAtIndex:[loc row]];
 	return piece == [NSNull null] ? nil : piece;
 }
 
+- (void)setPiece:(id)piece atLocation:(Location*)loc {
+    [[grid objectAtIndex:[loc column]] replaceObjectAtIndex:[loc row] withObject:piece];   
+}
+
+- (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r {
+    return [self pieceAtLocation:[[Location alloc] initWithColumn:c row:r]];
+}
+
 - (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r {
-    [[grid objectAtIndex:c] replaceObjectAtIndex:r withObject:piece];
+    [self setPiece:piece atLocation:[[Location alloc] initWithColumn:c row:r]];
 }
 
 - (NSUInteger)columns {
