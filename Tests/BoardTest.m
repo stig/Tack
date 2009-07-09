@@ -8,6 +8,7 @@
 
 #import "BoardTest.h"
 #import "Board.h"
+#import "Location.h"
 
 @implementation BoardTest
 
@@ -22,9 +23,10 @@
     Board *two = [one copy];
     STAssertEqualObjects(one, two, nil);
     
-    [one setPiece:@"foo" atColumn:0 row:0];
-    STAssertEqualObjects([one pieceAtColumn:0 row:0], @"foo", nil);
-    STAssertNil([two pieceAtColumn:0 row:0], nil);
+    Location *origin = [Location locationWithColumn:0 row:0];
+    [one setPiece:@"foo" atLocation:origin];
+    STAssertEqualObjects([one pieceAtLocation:origin], @"foo", nil);
+    STAssertNil([two pieceAtLocation:origin], nil);
 }
 
 @end

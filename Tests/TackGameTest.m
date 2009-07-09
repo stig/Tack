@@ -6,17 +6,17 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "TackControllerTest.h"
-#import "TackController.h"
+#import "TackGameTest.h"
+#import "TackGame.h"
 #import "Board.h"
 #import "Player.h"
 #import "Piece.h"
 #import "Location.h"
 
-@implementation TackControllerTest
+@implementation TackGameTest
 
 - (void)setUp {
-    game = [TackController new];
+    game = [TackGame new];
     board = [[Board alloc] initWithColumns:3 rows:3];
 }
 

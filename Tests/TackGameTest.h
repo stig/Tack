@@ -9,10 +9,10 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 @class Board;
-@class TackController;
+@class TackGame;
 
-@interface TackControllerTest : SenTestCase {
+@interface TackGameTest : SenTestCase {
     Board *board;
-    TackController *game;
+    TackGame *game;
 }
 @end

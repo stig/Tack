@@ -10,7 +10,8 @@
 #import "Player.h"
 #import "Board.h"
 #import "Piece.h"
-#import "Grid.h"
+#import "BoardView.h"
+#import "Location.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -19,7 +20,7 @@
 - (Player*)currentPlayer;
 - (void)togglePlayer;
 - (void)makeAiMove;
-- (void)moveToColumn:(NSUInteger)c row:(NSUInteger)r;
+- (void)moveToLocation:(Location*)loc;
 
 @end
 
@@ -81,19 +82,20 @@
 - (void)makeAiMove {    
     for (int c = 0; c < board.columns; c++) {
         for (int r = 0; r < board.rows; r++) {
-            Piece *piece = [board pieceAtColumn:c row:r];
+            Location *loc = [Location locationWithColumn:c row:r];
+            Piece *piece = [board pieceAtLocation:loc];
             if (!piece) {
-                [self moveToColumn:c row:r];
+                [self moveToLocation:loc];
                 return;
             }
         }
     }    
 }
 
-- (void)moveToColumn:(NSUInteger)c row:(NSUInteger)r {
-    NSLog(@"%@ moving to <%d,%d>", [[players objectAtIndex:currentPlayer] name], c, r);
+- (void)moveToLocation:(Location*)loc {
+    NSLog(@"%@ moving to %@", [[players objectAtIndex:currentPlayer] name], loc);
     
-    Piece *piece = [board pieceAtColumn:c row:r];
+    Piece *piece = [board pieceAtLocation:loc];
     if (piece) {
         NSLog(@"Bonk! Cell already occupied.");
         return;
@@ -101,19 +103,19 @@
 
     piece = [Piece new];
     piece.owner = [self currentPlayer];
-    [board setPiece:piece atColumn:c row:r];
+    [board setPiece:piece atLocation:loc];
     
     [self togglePlayer];
 }
 
 
 
-- (void)clickInColumn:(NSUInteger)c row:(NSUInteger)r {
+- (void)clickAtLocation:(Location*)loc {
     if (currentPlayer == aiPlayer) {
         NSLog(@"Sorry, it is %@'s turn", [[self currentPlayer] name]);
         return;
     }
-    [self moveToColumn:c row:r];
+    [self moveToLocation:loc];
 }
 
 

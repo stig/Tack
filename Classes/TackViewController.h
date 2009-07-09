@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @class Board;
-@class Grid;
+@class BoardView;
+@class Location;
 
 @interface TackViewController : UIViewController {
     UILabel *turn;
@@ -17,14 +18,14 @@
     NSUInteger currentPlayer, aiPlayer;
     
     Board *board;
-    Grid *grid;
+    BoardView *grid;
 }
 
 @property (retain) IBOutlet Board *board;
-@property (retain) IBOutlet Grid *grid;
+@property (retain) IBOutlet BoardView *grid;
 @property (retain) IBOutlet UILabel *turn;
 
-- (void)clickInColumn:(NSUInteger)c row:(NSUInteger)r;
+- (void)clickAtLocation:(Location*)loc;
 
 @end
 

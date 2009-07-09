@@ -11,7 +11,7 @@
 @class Board;
 @class Player;
 
-@interface TackController : NSObject {
+@interface TackGame : NSObject {
 }
 
 - (NSArray*)legalMovesAtBoard:(Board*)board;

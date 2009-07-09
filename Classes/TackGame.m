@@ -6,12 +6,12 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "TackController.h"
+#import "TackGame.h"
 #import "Board.h"
 #import "Player.h"
 #import "Location.h"
 
-@implementation TackController
+@implementation TackGame
 
 - (NSArray*)legalMovesAtBoard:(Board*)board {
     NSMutableArray *moves = [NSMutableArray arrayWithCapacity:board.rows * board.columns];

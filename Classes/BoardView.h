@@ -4,8 +4,7 @@
 @class Board;
 @class TackViewController;
 
-/// @todo rename to BoardView once refactoring works again...
-@interface Grid : UIView {
+@interface BoardView : UIView {
     Board *model;
     Board *board;
     

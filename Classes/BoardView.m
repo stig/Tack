@@ -1,11 +1,11 @@
-#import "Grid.h"
+#import "BoardView.h"
 #import "Piece.h"
 #import "Board.h"
 #import "Location.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TackViewController.h"
 
-@implementation Grid
+@implementation BoardView
 
 @synthesize model;
 
@@ -83,10 +83,11 @@
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     UITouch *touch = [touches anyObject];    
-    CGPoint point = [touch locationInView:self];    
-    [_controller clickInColumn:(int)(point.x / cellSize.width)
-                           row:(int)(point.y / cellSize.height)];
+    CGPoint point = [touch locationInView:self];
+    Location *loc = [Location locationWithColumn:(int)(point.x / cellSize.width)
+                                             row:(int)(point.y / cellSize.height)];
     
+    [_controller clickAtLocation:loc];    
 }
 
 - (void)setModel:(Board*)newModel {

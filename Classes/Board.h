@@ -23,7 +23,4 @@
 - (id)pieceAtLocation:(Location*)loc;
 - (void)setPiece:(id)piece atLocation:(Location*)loc;
 
-- (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r;
-- (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r;
-
 @end
