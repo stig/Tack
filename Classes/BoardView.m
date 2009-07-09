@@ -44,6 +44,8 @@
             if (!cell) {
                 cell = [CALayer layer];
                 cell.name = [loc description];
+                cell.cornerRadius = 4;
+                [cell setValue:loc forKey:@"cellLocation"];
 
                 CGFloat cellColour[] = { 0.0, 0.0, 0.0, 0.3 * ((c + r) & 1) };
                 cell.backgroundColor = CGColorCreate(space, cellColour);
@@ -71,6 +73,7 @@
                     player = piece.owner;
                 uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
                 uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
+                uiPiece.cornerRadius = uiPiece.bounds.size.width / 2.0;
                 
                 [cell.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
                 [cell addSublayer: uiPiece];
@@ -83,11 +86,16 @@
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     UITouch *touch = [touches anyObject];    
-    CGPoint point = [touch locationInView:self];
-    Location *loc = [Location locationWithColumn:(int)(point.x / cellSize.width)
-                                             row:(int)(point.y / cellSize.height)];
+    CGPoint point = [touch locationInView:nil];    
+    CALayer *layer = [self.layer.presentationLayer hitTest:point];
     
-    [_controller clickAtLocation:loc];    
+    Location *loc = [layer valueForKey:@"cellLocation"];
+    if (loc)
+        [_controller clickAtLocation:loc];
+    else if ([layer valueForKey:@"underlyingPiece"])
+        NSLog(@"Cell already occupied!");
+    else
+        NSLog(@"Did not hit a cell layer!");
 }
 
 - (void)setModel:(Board*)newModel {
