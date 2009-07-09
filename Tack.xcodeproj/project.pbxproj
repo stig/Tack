@@ -28,6 +28,9 @@
 		BC1D5B341001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
 		BC1D5BAE100162760068B45A /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5BAD100162760068B45A /* BoardTest.m */; };
 		BC1D5BAF100162840068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
+		BCF5A5D51006860400B04A83 /* TackController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D41006860400B04A83 /* TackController.m */; };
+		BCF5A5D61006860400B04A83 /* TackController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D41006860400B04A83 /* TackController.m */; };
+		BCF5A5D91006861900B04A83 /* TackControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D81006861900B04A83 /* TackControllerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,10 @@
 		BC1D5B321001328F0068B45A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		BC1D5BAC100162760068B45A /* BoardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTest.h; sourceTree = "<group>"; };
 		BC1D5BAD100162760068B45A /* BoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTest.m; sourceTree = "<group>"; };
+		BCF5A5D31006860400B04A83 /* TackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TackController.h; sourceTree = "<group>"; };
+		BCF5A5D41006860400B04A83 /* TackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TackController.m; sourceTree = "<group>"; };
+		BCF5A5D71006861900B04A83 /* TackControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TackControllerTest.h; sourceTree = "<group>"; };
+		BCF5A5D81006861900B04A83 /* TackControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TackControllerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +171,8 @@
 				BC1D59221000E94D0068B45A /* Player.m */,
 				BC1D59251000E94D0068B45A /* Board.h */,
 				BC1D59261000E94D0068B45A /* Board.m */,
+				BCF5A5D31006860400B04A83 /* TackController.h */,
+				BCF5A5D41006860400B04A83 /* TackController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -186,6 +195,8 @@
 				BC1D5B2F100131EC0068B45A /* PieceTest.m */,
 				BC1D5BAC100162760068B45A /* BoardTest.h */,
 				BC1D5BAD100162760068B45A /* BoardTest.m */,
+				BCF5A5D71006861900B04A83 /* TackControllerTest.h */,
+				BCF5A5D81006861900B04A83 /* TackControllerTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -294,6 +305,7 @@
 				BC1D59291000E94D0068B45A /* Board.m in Sources */,
 				BC1D592D1000E9570068B45A /* Grid.m in Sources */,
 				BC1D5B331001328F0068B45A /* Location.m in Sources */,
+				BCF5A5D61006860400B04A83 /* TackController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +320,8 @@
 				BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */,
 				BC1D5BAF100162840068B45A /* Board.m in Sources */,
 				BC1D5BAE100162760068B45A /* BoardTest.m in Sources */,
+				BCF5A5D51006860400B04A83 /* TackController.m in Sources */,
+				BCF5A5D91006861900B04A83 /* TackControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

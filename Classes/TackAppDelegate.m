@@ -3,7 +3,7 @@
 //  Tack
 //
 //  Created by Stig Brautaset on 05/07/2009.
-//  Copyright Morgan Stanley 2009. All rights reserved.
+//  Copyright Stig Brautaset 2009. All rights reserved.
 //
 
 #import "TackAppDelegate.h"
