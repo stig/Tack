@@ -10,13 +10,12 @@
 
 
 @interface Location : NSObject <NSCopying> {
-    NSIndexPath *indexPath;
+    NSUInteger column, row;
 }
+
+@property(readonly) NSUInteger column, row;
 
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r;
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r;
-
-- (NSUInteger)column;
-- (NSUInteger)row;
 
 @end

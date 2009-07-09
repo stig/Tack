@@ -11,6 +11,8 @@
 
 @implementation Location
 
+@synthesize column, row;
+
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r {
     return [[self alloc] initWithColumn:c row:r];
 }
@@ -18,8 +20,8 @@
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r {
     self = [super init];
     if (self) {
-        NSUInteger indices[] = {c, r};
-        indexPath = [[NSIndexPath alloc] initWithIndexes:indices length:2];
+        row = r;
+        column = c;
     }
     return self;
 }
@@ -29,17 +31,9 @@
     return nil;
 }
 
-- (NSUInteger)column {
-    return [indexPath indexAtPosition:0];
-}
-
-- (NSUInteger)row {
-    return [indexPath indexAtPosition:1];
-}
-
 - (id)copyWithZone:(NSZone*)zone {
-   return [[[self class] alloc] initWithColumn:[self column]
-                                           row:[self row]];
+   return [[[self class] alloc] initWithColumn:self.column
+                                           row:self.row];
 }
 
 #pragma mark description
@@ -52,12 +46,13 @@
 
 - (BOOL)isEqual:(id)obj {
     return [obj isMemberOfClass:[self class]]
-        && [self column] == [obj column]
-        && [self row] == [obj row];
+        && [self hash] == [obj hash];
 }
 
+
+// A 100x100 board is probably enough.
 - (NSUInteger)hash {
-    return [indexPath hash];
+    return self.column * 100 + self.row;
 }
 
 @end
