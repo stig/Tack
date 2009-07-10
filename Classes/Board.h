@@ -23,4 +23,7 @@
 - (id)pieceAtLocation:(Location*)loc;
 - (void)setPiece:(id)piece atLocation:(Location*)loc;
 
+- (void)addObserver:(id)observer;
+- (void)removeObserver:(id)observer;
+
 @end

@@ -6,7 +6,7 @@
 
 @interface BoardView : UIView {
     Board *model;
-    Board *board;
+    Board *cells;
     
     TackViewController *_controller;
     CGSize cellSize;
@@ -16,6 +16,6 @@
 
 @property (retain) TackViewController *controller;
 
-- (void)refreshBoardView;
+- (void)createCells;
 
 @end

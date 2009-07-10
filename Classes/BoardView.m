@@ -29,18 +29,21 @@
     return CGColorCreate(space, rgba);
 }
 
-- (void)refreshBoardView {
+- (void)createCells {
+    
+    [cells release];
+    cells = [[Board alloc] initWithColumns:model.columns
+                                      rows:model.rows];
+    
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     
     CGSize size = [self bounds].size;
-    cellSize = CGSizeMake(size.width / board.columns, size.height / board.rows);
-    
-    id player = nil; // hack hack hack.
+    cellSize = CGSizeMake(size.width / cells.columns, size.height / cells.rows);
     
     for (int r = 0; r < model.rows; r++) {
         for (int c = 0; c < model.columns; c++) {
             Location *loc = [[Location alloc] initWithColumn:c row:r];
-            CALayer *cell = [board pieceAtLocation:loc];
+            CALayer *cell = [cells pieceAtLocation:loc];
             if (!cell) {
                 cell = [CALayer layer];
                 cell.name = [loc description];
@@ -51,7 +54,7 @@
                 cell.backgroundColor = CGColorCreate(space, cellColour);
                 
                 [self.layer addSublayer:cell];
-                [board setPiece:cell atLocation:loc];
+                [cells setPiece:cell atLocation:loc];
             }
             
             // Refresh the frame, in case our dimensions have changed.
@@ -61,23 +64,6 @@
                                     cellSize.height * r,
                                     cellSize.width,
                                     cellSize.height);
-
-
-            Piece *piece = [model pieceAtLocation:loc];
-            if (piece) {
-                CALayer *uiPiece = [CALayer layer];
-                uiPiece.name = [piece description];
-                [uiPiece setValue:piece forKey:@"underlyingPiece"];
-                                
-                if (!player)
-                    player = piece.owner;
-                uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
-                uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
-                uiPiece.cornerRadius = uiPiece.bounds.size.width / 2.0;
-                
-                [cell.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
-                [cell addSublayer: uiPiece];
-            }
             
         }
     }
@@ -99,21 +85,44 @@
 }
 
 - (void)setModel:(Board*)newModel {
-    if ([model isEqual:newModel]) {
-        NSLog(@"New model is identical to existing.");
-        return;
-    }
+
+    if (model)
+        [model removeObserver:self];
     
     [model autorelease];
-    model = [newModel copy];
-    
-    if (!board) {
-        NSLog(@"initially creating board for holding CALayers");
-        board = [[Board alloc] initWithColumns:model.columns
-                                          rows:model.rows];
-    }
+    model = [newModel retain];
 
-    [self refreshBoardView];
+    [self createCells];
+    
+    [newModel addObserver:self];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{    
+    static Player *player = nil;
+    
+    Piece *piece = [object pieceAtLocation:context];
+    if (piece) {
+        CALayer *cell = [cells pieceAtLocation:context];
+        
+        CALayer *uiPiece = [CALayer layer];
+        uiPiece.name = [piece description];
+        [uiPiece setValue:piece forKey:@"underlyingPiece"];
+        
+        if (!player)
+            player = piece.owner;
+        uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
+        uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
+        uiPiece.cornerRadius = uiPiece.bounds.size.width / 2.0;
+        
+        [cell.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+        [cell addSublayer: uiPiece];
+        
+        [self setNeedsDisplay];
+    }
 }
 
 

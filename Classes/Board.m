@@ -72,15 +72,29 @@
 }
 
 - (void)setPiece:(id)piece atLocation:(Location*)loc {
+    [self willChangeValueForKey:[loc description]];
     [grid setObject:piece forKey:loc];
+    [self didChangeValueForKey:[loc description]];
 }
 
-- (id)pieceAtColumn:(NSUInteger)c row:(NSUInteger)r {
-    return [self pieceAtLocation:[[Location alloc] initWithColumn:c row:r]];
+#pragma mark Add / remove observers
+
+
+- (void)addObserver:(id)observer {
+    for (id key in grid) {
+        NSLog(@"Adding %@ as subscriber to %@ key", observer, [key description]);
+        [self addObserver:observer
+               forKeyPath:[key description]
+                  options:0
+                  context:key];
+    }
 }
 
-- (void)setPiece:(id)piece atColumn:(NSUInteger)c row:(NSUInteger)r {
-    [self setPiece:piece atLocation:[[Location alloc] initWithColumn:c row:r]];
+- (void)removeObserver:(id)observer {
+    for (id key in grid) {
+        [self removeObserver:observer
+                  forKeyPath:[key description]];
+    }
 }
 
 @end

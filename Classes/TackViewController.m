@@ -45,7 +45,7 @@
 
     self.grid.controller = self;
     self.grid.model = self.board;    
-    [self.grid refreshBoardView];
+    [self.grid createCells];
     
     self.turn.text = [NSString stringWithFormat:@"Waiting for %@ to begin..", one.name];    
 }
@@ -65,8 +65,6 @@
 
 - (void)togglePlayer {
     currentPlayer = !currentPlayer;
-    self.grid.model = board;
-
     NSString *s = [[self currentPlayer] name];
 
     if (currentPlayer != aiPlayer) {
@@ -93,7 +91,6 @@
 }
 
 - (void)moveToLocation:(Location*)loc {
-    NSLog(@"%@ moving to %@", [[players objectAtIndex:currentPlayer] name], loc);
     
     Piece *piece = [board pieceAtLocation:loc];
     if (piece) {
@@ -107,8 +104,6 @@
     
     [self togglePlayer];
 }
-
-
 
 - (void)clickAtLocation:(Location*)loc {
     if (currentPlayer == aiPlayer) {
