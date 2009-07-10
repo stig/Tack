@@ -39,7 +39,7 @@
 #pragma mark description
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"[%u,%u]", self.column, self.row];
+    return [NSString stringWithFormat:@"%u@%u", self.column, self.row];
 }
 
 #pragma mark equality
