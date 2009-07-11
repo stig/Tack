@@ -42,6 +42,20 @@
 
 
 - (void)testFitness {
+    Player *me = [[Player alloc] initWithName:@"me"];
+    Player *you = [[Player alloc] initWithName:@"you"];
+    
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 0, nil);
+
+    Piece *p = [Piece new];
+    p.owner = me;
+    p.location = [Location locationWithColumn:0 row:0];
+    [board setPiece:p atLocation:p.location];
+
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 3, nil);
+    STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -3, nil);
+
+    
     
 }
 
