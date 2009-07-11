@@ -87,6 +87,8 @@
     NSInteger score = 0;
     for (NSArray *line in lines)
         score += [self scoreForPlayer:me atLine:line];
+    
+    [lines release];
     return score;
 }
 
