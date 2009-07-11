@@ -104,10 +104,9 @@
 {    
     static Player *player = nil;
     
+    CALayer *cell = [cells pieceAtLocation:context];
     Piece *piece = [object pieceAtLocation:context];
-    if (piece) {
-        CALayer *cell = [cells pieceAtLocation:context];
-        
+    if (piece) {        
         CALayer *uiPiece = [CALayer layer];
         uiPiece.name = [piece description];
         [uiPiece setValue:piece forKey:@"underlyingPiece"];
@@ -118,11 +117,15 @@
         uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
         uiPiece.cornerRadius = uiPiece.bounds.size.width / 2.0;
         
+        CALayer *old = [cell.sublayers lastObject];
+        if (old)
+            [cell replaceSublayer:old with:uiPiece];
+        else
+            [cell addSublayer: uiPiece];
+    } else {
         [cell.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
-        [cell addSublayer: uiPiece];
-        
-        [self setNeedsDisplay];
     }
+    
 }
 
 

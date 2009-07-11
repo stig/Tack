@@ -14,7 +14,7 @@
 @synthesize column, row;
 
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r {
-    return [[self alloc] initWithColumn:c row:r];
+    return [[[self alloc] initWithColumn:c row:r] autorelease];
 }
 
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r {
