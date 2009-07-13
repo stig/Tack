@@ -27,6 +27,9 @@
     [one setPiece:@"foo" atLocation:origin];
     STAssertEqualObjects([one pieceAtLocation:origin], @"foo", nil);
     STAssertNil([two pieceAtLocation:origin], nil);
+    
+    STAssertEquals(two.rows, one.rows, nil);
+    STAssertEquals(two.columns, one.columns, nil);
 }
 
 @end

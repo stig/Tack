@@ -9,6 +9,12 @@
 #import "Board.h"
 #import "Location.h"
 
+@interface Board ()
+@property(retain) NSMutableDictionary *grid;
+@property NSUInteger columns, rows;
+@end
+
+
 @implementation Board
 
 @synthesize columns;
@@ -40,6 +46,8 @@
     Board *copy = [[Board alloc] init];
     copy.grid = [[NSMutableDictionary alloc] initWithDictionary:self.grid
                                             copyItems:YES];
+    copy.columns = self.columns;
+    copy.rows = self.rows;
     return copy;
 }
 

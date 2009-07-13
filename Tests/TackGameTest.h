@@ -14,5 +14,6 @@
 @interface TackGameTest : SenTestCase {
     Board *board;
     TackGame *game;
+    NSMutableArray *observed;
 }
 @end

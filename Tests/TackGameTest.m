@@ -18,6 +18,7 @@
 - (void)setUp {
     game = [TackGame new];
     board = [[Board alloc] initWithColumns:3 rows:3];
+    observed = [NSMutableArray new];
 }
 
 - (void)testLegalMoves {
@@ -54,7 +55,7 @@
     STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 3, nil);
     STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -3, nil);
 
-    p = [Piece new];
+    p = [Piece new];	
     p.owner = you;
     p.location = [Location locationWithColumn:0 row:1];
     [board setPiece:p atLocation:p.location];
@@ -69,5 +70,40 @@
     STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -14, nil);
 }
 
+
+- (void)testMove {
+    Player *me = [[Player alloc] initWithName:@"me"];
+    Location *origin = [Location locationWithColumn:0 row:0];
+    
+    [game performMove:origin forPlayer:me atBoard:board];
+    
+    STAssertEquals([[board pieceAtLocation:origin] owner], me, nil);
+}
+
+
+#pragma mark Observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{    
+    [observed addObject:context];
+}
+
+- (void)testObserving {
+    [board setPiece:@"any" atLocation:[Location locationWithColumn:0 row:0]];
+    [board addObserver:self];
+    
+    Location *foo = [Location locationWithColumn:0 row:1];
+    [board setPiece:@"any" atLocation:foo];
+
+    Location *bar = [Location locationWithColumn:0 row:2];
+    [board setPiece:@"any" atLocation:bar];
+    
+    STAssertEquals(observed.count, 2u, nil);
+    STAssertEqualObjects([observed objectAtIndex:0], foo, nil);
+    STAssertEqualObjects([observed objectAtIndex:1], bar, nil);
+}
 
 @end

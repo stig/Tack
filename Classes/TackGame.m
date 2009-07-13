@@ -96,4 +96,12 @@
     return [self scoreForPlayer:me atBoard:board] - [self scoreForPlayer:you atBoard:board];
 }
 
+#pragma mark Performing moves
+
+- (void)performMove:(id)move forPlayer:(Player*)player atBoard:(Board*)board {
+    Piece *p = [Piece new];
+    p.owner = player;
+    [board setPiece:p atLocation:move];
+}
+
 @end
