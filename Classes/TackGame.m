@@ -14,9 +14,20 @@
 
 @implementation TackGame
 
+@synthesize board;
+
+- (id)initWithBoard:(Board*)board_ {
+    self = [super init];
+    if (self) {
+        board = [board_ retain];
+    }
+    return self;
+}
+
+
 #pragma mark Find legal moves
 
-- (NSArray*)legalMovesAtBoard:(Board*)board {
+- (NSArray*)legalMoves {
     NSMutableArray *moves = [NSMutableArray arrayWithCapacity:board.rows * board.columns];
     
     for (int c = 0; c < board.columns; c++) {
@@ -44,7 +55,7 @@
 }
 
 
-- (NSInteger)scoreForPlayer:(Player*)me atBoard:(Board*)board {
+- (NSInteger)scoreForPlayer:(Player*)me {
 
     NSMutableArray *lines = [[NSMutableArray alloc] initWithCapacity:8];
     NSMutableArray *diagonal1 = [[NSMutableArray alloc] initWithCapacity:3];
@@ -92,13 +103,13 @@
     return score;
 }
 
-- (NSInteger)fitnessForPlayer:(Player*)me withOpponent:(Player*)you atBoard:(Board*)board {
-    return [self scoreForPlayer:me atBoard:board] - [self scoreForPlayer:you atBoard:board];
+- (NSInteger)fitnessForPlayer:(Player*)me withOpponent:(Player*)you {
+    return [self scoreForPlayer:me] - [self scoreForPlayer:you];
 }
 
 #pragma mark Performing moves
 
-- (void)performMove:(id)move forPlayer:(Player*)player atBoard:(Board*)board {
+- (void)performMove:(id)move forPlayer:(Player*)player {
     Piece *p = [Piece new];
     p.owner = player;
     [board setPiece:p atLocation:move];

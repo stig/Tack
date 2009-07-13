@@ -11,10 +11,16 @@
 @class Board;
 @class Player;
 
-@interface TackGame : NSObject
+@interface TackGame : NSObject {
+    Board *board;
+}
 
-- (NSArray*)legalMovesAtBoard:(Board*)board;
-- (NSInteger)fitnessForPlayer:(Player*)p withOpponent:(Player*)o atBoard:(Board*)b;
-- (void)performMove:(id)move forPlayer:(Player*)player atBoard:(Board*)board;
+@property(readonly,retain) Board *board;
+
+- (id)initWithBoard:(Board*)board;
+
+- (NSArray*)legalMoves;
+- (NSInteger)fitnessForPlayer:(Player*)p withOpponent:(Player*)o;
+- (void)performMove:(id)move forPlayer:(Player*)player;
 
 @end

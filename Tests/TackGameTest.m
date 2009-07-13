@@ -16,14 +16,14 @@
 @implementation TackGameTest
 
 - (void)setUp {
-    game = [TackGame new];
     board = [[Board alloc] initWithColumns:3 rows:3];
+    game = [[TackGame alloc] initWithBoard:board];
     observed = [NSMutableArray new];
 }
 
 - (void)testLegalMoves {
     NSArray *moves;
-    STAssertNotNil(moves = [game legalMovesAtBoard:board], nil);
+    STAssertNotNil(moves = [game legalMoves], nil);
     STAssertEquals(moves.count, 9u, nil);
     
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 4)];
@@ -33,7 +33,7 @@
         [board setPiece:@"occupied" atLocation:loc];
     }
     
-    STAssertNotNil(moves = [game legalMovesAtBoard:board], nil);
+    STAssertNotNil(moves = [game legalMoves], nil);
     STAssertEquals(moves.count, 5u, nil);
     
     NSSet *moveSet = [NSSet setWithArray:moves];
@@ -46,28 +46,28 @@
     Player *me = [[Player alloc] initWithName:@"me"];
     Player *you = [[Player alloc] initWithName:@"you"];
     
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 0, nil);
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 0, nil);
 
     Piece *p = [Piece new];
     p.owner = me;
     p.location = [Location locationWithColumn:0 row:0];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 3, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -3, nil);
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 3, nil);
+    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -3, nil);
 
     p = [Piece new];	
     p.owner = you;
     p.location = [Location locationWithColumn:0 row:1];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 1, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -1, nil);
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 1, nil);
+    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -1, nil);
     
     p = [Piece new];
     p.owner = me;
     p.location = [Location locationWithColumn:1 row:1];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you atBoard:board], 14, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me atBoard:board], -14, nil);
+    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 14, nil);
+    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -14, nil);
 }
 
 
@@ -75,7 +75,7 @@
     Player *me = [[Player alloc] initWithName:@"me"];
     Location *origin = [Location locationWithColumn:0 row:0];
     
-    [game performMove:origin forPlayer:me atBoard:board];
+    [game performMove:origin forPlayer:me];
     
     STAssertEquals([[board pieceAtLocation:origin] owner], me, nil);
 }
