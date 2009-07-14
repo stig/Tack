@@ -12,15 +12,21 @@
 @class Player;
 
 @interface TackGame : NSObject {
+    NSArray *players;
+    NSUInteger playerIndex;
     Board *board;
 }
 
+@property(readonly,copy) NSArray *players;
 @property(readonly,retain) Board *board;
 
-// - (id)init;
+- (id)initWithPlayerOne:(Player*)one two:(Player*)two;
+
+- (Player*)player;
+- (Player*)opponent;
 
 - (NSArray*)legalMoves;
-- (NSInteger)fitnessForPlayer:(Player*)p withOpponent:(Player*)o;
-- (void)performMove:(id)move forPlayer:(Player*)player;
+- (NSInteger)fitness;
+- (void)performMove:(id)move;
 
 @end

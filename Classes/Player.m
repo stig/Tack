@@ -33,4 +33,13 @@
     return copy;
 }
 
+- (BOOL)isEqual:(id)obj {
+    return [obj isMemberOfClass:[self class]]
+        && [[obj name] isEqual:self.name];
+}
+
+- (NSUInteger)hash {
+    return [name hash];
+}
+
 @end

@@ -16,7 +16,9 @@
 @implementation TackGameTest
 
 - (void)setUp {
-    game = [[TackGame alloc] init];
+    Player *me = [[Player alloc] initWithName:@"me"];
+    Player *you = [[Player alloc] initWithName:@"you"];
+    game = [[TackGame alloc] initWithPlayerOne:me two:you];
     board = game.board;
     observed = [NSMutableArray new];
 }
@@ -43,41 +45,37 @@
 
 
 - (void)testFitness {
-    Player *me = [[Player alloc] initWithName:@"me"];
-    Player *you = [[Player alloc] initWithName:@"you"];
+    Player *me = [game player];
+    Player *you = [game opponent];
     
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 0, nil);
+    STAssertEquals([game fitness], 0, nil);
 
     Piece *p = [Piece new];
     p.owner = me;
     p.location = [Location locationWithColumn:0 row:0];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 3, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -3, nil);
-
+    STAssertEquals([game fitness], 3, nil);
+    
     p = [Piece new];	
     p.owner = you;
     p.location = [Location locationWithColumn:0 row:1];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 1, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -1, nil);
+    STAssertEquals([game fitness], 1, nil);
     
     p = [Piece new];
     p.owner = me;
     p.location = [Location locationWithColumn:1 row:1];
     [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitnessForPlayer:me withOpponent:you], 14, nil);
-    STAssertEquals([game fitnessForPlayer:you withOpponent:me], -14, nil);
+    STAssertEquals([game fitness], 14, nil);
 }
 
 
 - (void)testMove {
-    Player *me = [[Player alloc] initWithName:@"me"];
     Location *origin = [Location locationWithColumn:0 row:0];
     
-    [game performMove:origin forPlayer:me];
+    [game performMove:origin];
     
-    STAssertEquals([[board pieceAtLocation:origin] owner], me, nil);
+    STAssertEquals([[board pieceAtLocation:origin] owner], [game opponent], nil);
 }
 
 
