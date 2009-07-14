@@ -30,4 +30,8 @@
     return [location hash] + [owner hash];
 }
 
+- (NSString*)description {
+    return [self.owner name];
+}
+
 @end

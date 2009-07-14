@@ -43,21 +43,26 @@
 
 #pragma mark Fitness calculations
 
-- (NSInteger)scoreForPlayer:(Player*)player atLine:(NSArray*)line {
-    NSInteger score = 0;
-    for (Piece *piece in line) {        
-        if (piece.owner != player)
-            return 0;
-        score *= 10;
-        score++;
+- (NSInteger)scoreForLines:(NSArray*)lines forPlayer:(Player*)player {
+    NSInteger totalScore = 0;
+    for (NSArray *line in lines) {
+        NSInteger score = 0;
+        for (Piece *piece in line) {        
+            if (piece.owner != player) {
+                score = 0;
+                break;
+            }
+            score *= 10;
+            score++;
+        }
+        totalScore += score;
     }
-    return score;
+    return totalScore;
 }
 
 
-- (NSInteger)scoreForPlayer:(Player*)me {
-
-    NSMutableArray *lines = [[NSMutableArray alloc] initWithCapacity:8];
+- (NSArray*)potentialScoreLines {
+    NSMutableArray *lines = [NSMutableArray arrayWithCapacity:8];
     NSMutableArray *diagonal1 = [[NSMutableArray alloc] initWithCapacity:3];
     NSMutableArray *diagonal2 = [[NSMutableArray alloc] initWithCapacity:3];
 
@@ -74,7 +79,6 @@
         if (p = [board pieceAtLocation: d2])
             [diagonal2 addObject: p];
 
-
         for (int r = 0; r < board.rows; r++) {
             Location *h = [Location locationWithColumn:r row:c];        
             if (p = [board pieceAtLocation: h])
@@ -85,26 +89,25 @@
                 [vertical addObject: p];
         }
         
-        [lines addObject:horisontal];
-        [lines addObject:vertical];
+        if (horisontal.count)
+            [lines addObject:horisontal];
+        if (vertical.count)
+            [lines addObject:vertical];
         [horisontal release];
         [vertical release];
     }
-    [lines addObject:diagonal1];
-    [lines addObject:diagonal2];
+    if (diagonal1.count)
+        [lines addObject:diagonal1];
+    if (diagonal2.count)
+        [lines addObject:diagonal2];
     [diagonal1 release];
     [diagonal2 release];
-    
-    NSInteger score = 0;
-    for (NSArray *line in lines)
-        score += [self scoreForPlayer:me atLine:line];
-    
-    [lines release];
-    return score;
+    return lines;
 }
 
 - (NSInteger)fitnessForPlayer:(Player*)me withOpponent:(Player*)you {
-    return [self scoreForPlayer:me] - [self scoreForPlayer:you];
+    NSArray *lines = [self potentialScoreLines];
+    return [self scoreForLines:lines forPlayer:me] - [self scoreForLines:lines forPlayer:you];
 }
 
 #pragma mark Performing moves
