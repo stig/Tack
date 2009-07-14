@@ -10,6 +10,7 @@
 
 @class Board;
 @class Player;
+@class Location;
 
 @interface TackGame : NSObject {
     NSArray *players;
@@ -27,6 +28,6 @@
 
 - (NSArray*)legalMoves;
 - (NSInteger)fitness;
-- (void)performMove:(id)move;
+- (void)performMove:(Location*)move;
 
 @end

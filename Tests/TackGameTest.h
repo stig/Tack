@@ -12,7 +12,6 @@
 @class TackGame;
 
 @interface TackGameTest : SenTestCase {
-    Board *board;
     TackGame *game;
     NSMutableArray *observed;
 }

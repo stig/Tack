@@ -19,7 +19,6 @@
     Player *me = [[Player alloc] initWithName:@"me"];
     Player *you = [[Player alloc] initWithName:@"you"];
     game = [[TackGame alloc] initWithPlayerOne:me two:you];
-    board = game.board;
     observed = [NSMutableArray new];
 }
 
@@ -32,7 +31,7 @@
     NSArray *taken = [moves objectsAtIndexes:indexes];
     
     for (Location *loc in taken) {
-        [board setPiece:@"occupied" atLocation:loc];
+        [game performMove:loc];
     }
     
     STAssertNotNil(moves = [game legalMoves], nil);
@@ -44,29 +43,17 @@
 }
 
 
-- (void)testFitness {
-    Player *me = [game player];
-    Player *you = [game opponent];
-    
+- (void)testFitness {    
     STAssertEquals([game fitness], 0, nil);
 
-    Piece *p = [Piece new];
-    p.owner = me;
-    p.location = [Location locationWithColumn:0 row:0];
-    [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitness], 3, nil);
+    [game performMove:[Location locationWithColumn:0 row:0]];
+    STAssertEquals([game fitness], -3, nil);
     
-    p = [Piece new];	
-    p.owner = you;
-    p.location = [Location locationWithColumn:0 row:1];
-    [board setPiece:p atLocation:p.location];
+    [game performMove:[Location locationWithColumn:0 row:1]];
     STAssertEquals([game fitness], 1, nil);
     
-    p = [Piece new];
-    p.owner = me;
-    p.location = [Location locationWithColumn:1 row:1];
-    [board setPiece:p atLocation:p.location];
-    STAssertEquals([game fitness], 14, nil);
+    [game performMove:[Location locationWithColumn:1 row:1]];
+    STAssertEquals([game fitness], -14, nil);
 }
 
 
@@ -75,7 +62,7 @@
     
     [game performMove:origin];
     
-    STAssertEquals([[board pieceAtLocation:origin] owner], [game opponent], nil);
+    STAssertEquals([[game.board pieceAtLocation:origin] owner], [game opponent], nil);
 }
 
 
@@ -90,14 +77,14 @@
 }
 
 - (void)testObserving {
-    [board setPiece:@"any" atLocation:[Location locationWithColumn:0 row:0]];
-    [board addObserver:self];
+    [game performMove:[Location locationWithColumn:0 row:0]];
+    [game.board addObserver:self];
     
     Location *foo = [Location locationWithColumn:0 row:1];
-    [board setPiece:@"any" atLocation:foo];
+    [game performMove:foo];
 
     Location *bar = [Location locationWithColumn:0 row:2];
-    [board setPiece:@"any" atLocation:bar];
+    [game performMove:bar];
     
     STAssertEquals(observed.count, 2u, nil);
     STAssertEqualObjects([observed objectAtIndex:0], foo, nil);

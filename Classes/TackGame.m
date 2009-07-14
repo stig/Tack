@@ -122,7 +122,8 @@
 
 #pragma mark Performing moves
 
-- (void)performMove:(id)move {
+- (void)performMove:(Location*)move {
+    NSAssert(![board pieceAtLocation:move], @"location already occupied!");
     Piece *p = [Piece new];
     p.owner = self.player;
     [board setPiece:p atLocation:move];
