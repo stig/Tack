@@ -8,20 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@class Board;
 @class BoardView;
 @class Location;
+@class TackGame;
+@class Player;
 
 @interface TackViewController : UIViewController {
     UILabel *turn;
-    NSArray *players;
-    NSUInteger currentPlayer, aiPlayer;
+    Player *aiPlayer;
     
-    Board *board;
+    TackGame *game;
     BoardView *grid;
 }
 
-@property (retain) IBOutlet Board *board;
+@property (retain) IBOutlet TackGame *game;
 @property (retain) IBOutlet BoardView *grid;
 @property (retain) IBOutlet UILabel *turn;
 
