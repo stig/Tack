@@ -63,6 +63,18 @@
     [game performMove:origin];
     
     STAssertEquals([[game.board pieceAtLocation:origin] owner], [game opponent], nil);
+    STAssertThrows([game performMove:origin], nil);
+}
+
+
+- (void)testUndo {
+    Location *origin = [Location locationWithColumn:0 row:0];
+    
+    STAssertThrows([game undoMove:origin], nil);
+    [game performMove:origin];    
+    [game undoMove:origin];
+    
+    STAssertNil([game.board pieceAtLocation:origin], nil);
 }
 
 

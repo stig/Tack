@@ -131,5 +131,11 @@
 }
 
 
+- (void)undoMove:(Location*)move {
+    NSAssert([board pieceAtLocation:move], @"location not occupied!");
+    [board setPiece:[NSNull null] atLocation:move];
+    playerIndex = !playerIndex;
+}
+
 
 @end
