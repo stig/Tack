@@ -16,10 +16,10 @@
 
 @synthesize board;
 
-- (id)initWithBoard:(Board*)board_ {
+- (id)init {
     self = [super init];
     if (self) {
-        board = [board_ retain];
+        board = [[Board alloc] initWithColumns:3 rows:3];
     }
     return self;
 }

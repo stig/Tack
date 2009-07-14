@@ -16,8 +16,8 @@
 @implementation TackGameTest
 
 - (void)setUp {
-    board = [[Board alloc] initWithColumns:3 rows:3];
-    game = [[TackGame alloc] initWithBoard:board];
+    game = [[TackGame alloc] init];
+    board = game.board;
     observed = [NSMutableArray new];
 }
 

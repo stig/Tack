@@ -17,7 +17,7 @@
 
 @property(readonly,retain) Board *board;
 
-- (id)initWithBoard:(Board*)board;
+// - (id)init;
 
 - (NSArray*)legalMoves;
 - (NSInteger)fitnessForPlayer:(Player*)p withOpponent:(Player*)o;
