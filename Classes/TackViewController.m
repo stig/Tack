@@ -55,7 +55,7 @@
 #pragma mark -
 
 - (void)togglePlayer {
-    NSString *s = [game.player name];
+    NSString *s = game.player.name;
 
     if (![aiPlayer isEqual:game.player]) {
         s = [NSString stringWithFormat:@"Waiting for %@ to move...", s];        
@@ -68,7 +68,8 @@
 
 
 - (void)makeAiMove {
-    [self moveToLocation:[[game legalMoves] lastObject]];
+    NSArray *moves = [game legalMoves];
+    [self moveToLocation:[moves objectAtIndex:random() % moves.count]];
 }
 
 - (void)moveToLocation:(Location*)loc {
