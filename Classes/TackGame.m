@@ -120,7 +120,7 @@
          - [self scoreForLines:lines forPlayer:self.opponent];
 }
 
-#pragma mark Performing moves
+#pragma mark Perform & undo moves
 
 - (void)performMove:(Location*)move {
     NSAssert(![board pieceAtLocation:move], @"location already occupied!");
@@ -137,5 +137,11 @@
     playerIndex = !playerIndex;
 }
 
+#pragma mark Done yet?
+
+- (BOOL)isGameOver {
+    return [[self potentialScoreLines] count] == 8
+        || abs([self fitness]) > 50;
+}
 
 @end

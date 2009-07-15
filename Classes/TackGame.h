@@ -30,5 +30,6 @@
 - (NSInteger)fitness;
 - (void)performMove:(Location*)move;
 - (void)undoMove:(Location*)move;
+- (BOOL)isGameOver;
 
 @end

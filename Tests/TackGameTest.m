@@ -77,6 +77,36 @@
     STAssertNil([game.board pieceAtLocation:origin], nil);
 }
 
+- (void)testGameOverAtWin {
+    STAssertFalse([game isGameOver], nil);
+    [game performMove:[Location locationWithColumn:0 row:0]];
+    [game performMove:[Location locationWithColumn:1 row:0]];
+
+    [game performMove:[Location locationWithColumn:1 row:1]];
+    [game performMove:[Location locationWithColumn:2 row:1]];
+    
+    [game performMove:[Location locationWithColumn:2 row:2]];
+    STAssertTrue([game isGameOver], nil);
+}
+
+- (void)testGameOverAtDraw {
+    STAssertFalse([game isGameOver], nil);
+    [game performMove:[Location locationWithColumn:0 row:0]];
+    [game performMove:[Location locationWithColumn:1 row:0]];
+    
+    [game performMove:[Location locationWithColumn:0 row:1]];
+    [game performMove:[Location locationWithColumn:1 row:1]];
+
+    [game performMove:[Location locationWithColumn:1 row:2]];
+    [game performMove:[Location locationWithColumn:0 row:2]];
+
+    [game performMove:[Location locationWithColumn:2 row:0]];
+    [game performMove:[Location locationWithColumn:2 row:1]];
+
+    [game performMove:[Location locationWithColumn:2 row:2]];
+    NSLog(@"%@", game.board);
+    STAssertTrue([game isGameOver], nil);
+}
 
 #pragma mark Observing
 
