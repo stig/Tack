@@ -144,4 +144,48 @@
         || abs([self fitness]) > 50;
 }
 
+#pragma mark Game tree search
+
+- (NSInteger)fitnessWithDepth:(NSInteger)ply {
+    
+    NSArray *moves = [self legalMoves];
+    if (ply <= 0 || !moves.count)
+        return [self fitness];
+    
+    NSInteger best = INT_MIN;
+    for (Location *m in moves) {
+        [self performMove:m];
+        NSInteger sc = -[self fitnessWithDepth:ply-1];
+        [self undoMove:m];
+        if (sc > best)
+            best = sc;        
+    }
+    return best;
+    
+}
+
+- (Location*)moveSearchWithDepth:(NSUInteger)ply {
+    NSArray *moves = [self legalMoves];
+
+    Location *bestMove = nil;
+    NSInteger best = INT_MIN;
+    for (Location *m in moves) {
+        [self performMove:m];
+        NSInteger sc = -[self fitnessWithDepth:ply];
+        [self undoMove:m];
+        
+        NSLog(@"%@ fitness: %d", m, sc);
+        
+        if (sc > best) {
+            best = sc;
+            bestMove = m;
+        }
+    }
+    
+    NSLog(@"**************************************");
+    NSLog(@"%@ is best: %d\n", bestMove, best);
+    NSLog(@"**************************************");
+    return bestMove;
+}
+
 @end

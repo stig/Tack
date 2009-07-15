@@ -104,9 +104,29 @@
     [game performMove:[Location locationWithColumn:2 row:1]];
 
     [game performMove:[Location locationWithColumn:2 row:2]];
-    NSLog(@"%@", game.board);
     STAssertTrue([game isGameOver], nil);
 }
+
+#pragma mark Searching
+
+- (void)testMoveSearchWithDepthFromPly0 {
+    Location *center = [Location locationWithColumn:1 row:1];
+    for (int i = 0; i < 4; i++) {
+        Location *move = [game moveSearchWithDepth:i];
+        STAssertEqualObjects(move, center, nil);
+    }
+}
+
+- (void)testMoveSearchWithDepthFromPly1 {
+    [game performMove:[Location locationWithColumn:1 row:1]];
+
+    Location *corner = [game moveSearchWithDepth:0];
+    for (int i = 0; i < 4; i++) {
+        Location *move = [game moveSearchWithDepth:i];
+        STAssertEqualObjects(move, corner, nil);
+    }
+}
+
 
 #pragma mark Observing
 

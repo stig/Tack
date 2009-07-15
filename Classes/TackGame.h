@@ -32,4 +32,6 @@
 - (void)undoMove:(Location*)move;
 - (BOOL)isGameOver;
 
+- (Location*)moveSearchWithDepth:(NSUInteger)ply;
+
 @end
