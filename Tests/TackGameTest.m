@@ -112,7 +112,7 @@
 - (void)testMoveSearchWithDepthFromPly0 {
     Location *center = [Location locationWithColumn:1 row:1];
     for (int i = 0; i < 4; i++) {
-        Location *move = [game moveSearchWithDepth:i];
+        Location *move = [game moveFromSearchToDepth:i];
         STAssertEqualObjects(move, center, nil);
     }
 }
@@ -120,9 +120,9 @@
 - (void)testMoveSearchWithDepthFromPly1 {
     [game performMove:[Location locationWithColumn:1 row:1]];
 
-    Location *corner = [game moveSearchWithDepth:0];
+    Location *corner = [game moveFromSearchToDepth:0];
     for (int i = 0; i < 4; i++) {
-        Location *move = [game moveSearchWithDepth:i];
+        Location *move = [game moveFromSearchToDepth:i];
         STAssertEqualObjects(move, corner, nil);
     }
 }

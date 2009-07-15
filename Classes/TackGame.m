@@ -164,7 +164,7 @@
     
 }
 
-- (Location*)moveSearchWithDepth:(NSUInteger)ply {
+- (Location*)moveFromSearchToDepth:(NSUInteger)ply {
     NSArray *moves = [self legalMoves];
 
     Location *bestMove = nil;
