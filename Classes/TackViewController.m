@@ -30,12 +30,13 @@
 @synthesize grid;
 @synthesize turn;
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+#pragma mark Setup
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Player *one = [[Player alloc] initWithName:@"Jack"];    
-    aiPlayer = [[Player alloc] initWithName:@"Jill"];
+    Player *one = [[Player alloc] initWithName:@"Hooman"];    
+    aiPlayer = [[Player alloc] initWithName:@"Pooter"];
     game = [[TackGame alloc] initWithPlayerOne:one two:aiPlayer];
 
     self.grid.controller = self;
@@ -52,24 +53,32 @@
     [super dealloc];
 }
 
-#pragma mark -
+#pragma mark Gameplay
 
 - (void)togglePlayer {
-    NSString *s = game.player.name;
+    if ([game isGameOver]) {
+        NSInteger fitness = [game fitness];
+        if (fitness > 0)
+            self.turn.text = [NSString stringWithFormat:@"%@ is the winner!", game.player.name];
+        else if (fitness < 0)
+            self.turn.text = [NSString stringWithFormat:@"%@ is the winner!", game.opponent.name];
+        else
+            self.turn.text = @"You managed a draw!";
+        
+        return;
+    }
 
     if (![aiPlayer isEqual:game.player]) {
-        s = [NSString stringWithFormat:@"Waiting for %@ to move...", s];        
+        self.turn.text = [NSString stringWithFormat:@"Waiting for %@ to move...", game.player.name];
     } else {
-        s = [NSString stringWithFormat:@"%@ searching for a move...", s];
+        self.turn.text = [NSString stringWithFormat:@"%@ searching for a move...", game.player.name];
         [self performSelector: @selector(makeAiMove) withObject: nil afterDelay: 1.0f];
     }
-    self.turn.text = s;
 }
 
 
 - (void)makeAiMove {
-    NSArray *moves = [game legalMoves];
-    [self moveToLocation:[moves objectAtIndex:random() % moves.count]];
+    [self moveToLocation:[game moveFromSearchToDepth:3]];
 }
 
 - (void)moveToLocation:(Location*)loc {
@@ -86,7 +95,10 @@
 
 - (void)clickAtLocation:(Location*)loc {
     if ([aiPlayer isEqual:game.player]) {
-        NSLog(@"Sorry, it is %@'s turn", [game.player name]);
+        self.turn.text = [NSString stringWithFormat:@"Sorry, it is %@'s turn", game.player.name];
+        return;
+    } else if ([game isGameOver]) {
+        self.turn.text = @"No move possible: it is Game Over I am afraid!";
         return;
     }
     [self moveToLocation:loc];

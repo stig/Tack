@@ -38,6 +38,8 @@
 
 - (NSArray*)legalMoves {
     NSMutableArray *moves = [NSMutableArray arrayWithCapacity:board.rows * board.columns];
+    if ([self isGameOver])
+        return moves;
     
     for (int c = 0; c < board.columns; c++) {
         for (int r = 0; r < board.rows; r++) {
@@ -140,8 +142,12 @@
 #pragma mark Done yet?
 
 - (BOOL)isGameOver {
-    return [[self potentialScoreLines] count] == 8
-        || abs([self fitness]) > 50;
+    int free = 0;
+    for (int c = 0; c < board.columns; c++)
+        for (int r = 0; r < board.rows; r++)
+            if (![board pieceAtLocation:[Location locationWithColumn:c row:r]])
+                free++;
+    return !free || abs([self fitness]) > 50;
 }
 
 #pragma mark Game tree search
@@ -173,18 +179,12 @@
         [self performMove:m];
         NSInteger sc = -[self fitnessWithDepth:ply];
         [self undoMove:m];
-        
-        NSLog(@"%@ fitness: %d", m, sc);
-        
+                
         if (sc > best) {
             best = sc;
             bestMove = m;
         }
     }
-    
-    NSLog(@"**************************************");
-    NSLog(@"%@ is best: %d\n", bestMove, best);
-    NSLog(@"**************************************");
     return bestMove;
 }
 
