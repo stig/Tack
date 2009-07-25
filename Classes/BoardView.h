@@ -7,6 +7,7 @@
 @interface BoardView : UIView {
     Board *model;
     Board *cells;
+    CALayer *activeCell;
     
     TackViewController *_controller;
     CGSize cellSize;

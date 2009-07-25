@@ -17,6 +17,12 @@
     self.layer.backgroundColor = CGColorCreate(space, green);
 }
 
+- (CGColorRef)yellow {
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGFloat rgba[] = { 0.7, 0.7, 0.0, 1.0 };
+    return CGColorCreate(space, rgba);
+}
+
 - (CGColorRef)red {
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     CGFloat rgba[] = { 0.7, 0.0, 0.0, 1.0 };
@@ -52,6 +58,7 @@
 
                 CGFloat cellColour[] = { 0.0, 0.0, 0.0, 0.3 * ((c + r) & 1) };
                 cell.backgroundColor = CGColorCreate(space, cellColour);
+                cell.borderColor = [self yellow];
                 
                 [self.layer addSublayer:cell];
                 [cells setPiece:cell atLocation:loc];
@@ -69,11 +76,38 @@
     }
 }
 
+# pragma mark Touches
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+    NSLog(@"touchesBegan:withEvent:");
+    UITouch *touch = [touches anyObject];    
+    CGPoint point = [touch locationInView:nil];    
+    activeCell = [self.layer hitTest:point];
+
+    if ([activeCell valueForKey:@"cellLocation"]) {
+        NSLog(@"highlight a cell layer!");
+        activeCell.borderWidth = 2;
+    }
+}
+
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+    NSLog(@"touchesMoved:withEvent:");
+    UITouch *touch = [touches anyObject];    
+    CGPoint point = [touch locationInView:nil];
+    if (activeCell)
+        activeCell.borderWidth = 0;
+    
+    activeCell = [self.layer hitTest:point];
+    if ([activeCell valueForKey:@"cellLocation"]) {
+        NSLog(@"highlight a cell layer!");
+        activeCell.borderWidth = 2;
+    }
+}
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     UITouch *touch = [touches anyObject];    
     CGPoint point = [touch locationInView:nil];    
-    CALayer *layer = [self.layer.presentationLayer hitTest:point];
+    CALayer *layer = [self.layer hitTest:point];
     
     Location *loc = [layer valueForKey:@"cellLocation"];
     if (loc)
@@ -82,7 +116,10 @@
         NSLog(@"Cell already occupied!");
     else
         NSLog(@"Did not hit a cell layer!");
+    activeCell.borderWidth = 0;
+    activeCell = nil;
 }
+
 
 - (void)setModel:(Board*)newModel {
 
