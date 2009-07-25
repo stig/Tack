@@ -87,6 +87,8 @@
     if ([activeCell valueForKey:@"cellLocation"]) {
         NSLog(@"highlight a cell layer!");
         activeCell.borderWidth = 2;
+        double factor = 1.5;
+        activeCell.transform = CATransform3DMakeScale(factor, factor, factor);
     }
 }
 
@@ -94,13 +96,17 @@
     NSLog(@"touchesMoved:withEvent:");
     UITouch *touch = [touches anyObject];    
     CGPoint point = [touch locationInView:nil];
-    if (activeCell)
+    if (activeCell) {
         activeCell.borderWidth = 0;
-    
+        double factor = 1.0;
+        activeCell.transform = CATransform3DMakeScale(factor, factor, factor);
+    }
     activeCell = [self.layer hitTest:point];
     if ([activeCell valueForKey:@"cellLocation"]) {
         NSLog(@"highlight a cell layer!");
         activeCell.borderWidth = 2;
+        double factor = 1.5;
+        activeCell.transform = CATransform3DMakeScale(factor, factor, factor);
     }
 }
 
@@ -117,6 +123,8 @@
     else
         NSLog(@"Did not hit a cell layer!");
     activeCell.borderWidth = 0;
+    double factor = 1.0;
+    activeCell.transform = CATransform3DMakeScale(factor, factor, factor);
     activeCell = nil;
 }
 
