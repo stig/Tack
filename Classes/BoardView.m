@@ -49,9 +49,9 @@
     for (int r = 0; r < model.rows; r++) {
         for (int c = 0; c < model.columns; c++) {
             Location *loc = [[Location alloc] initWithColumn:c row:r];
-            CALayer *cell = [cells pieceAtLocation:loc];
+            SBLayer *cell = [cells pieceAtLocation:loc];
             if (!cell) {
-                cell = [CALayer layer];
+                cell = [SBLayer layer];
                 cell.name = [loc description];
                 cell.cornerRadius = 4;
                 [cell setValue:loc forKey:@"cellLocation"];
@@ -82,12 +82,12 @@
     NSLog(@"touchesBegan:withEvent:");
     UITouch *touch = [touches anyObject];    
     CGPoint point = [touch locationInView:nil];    
-    activeCell = [self.layer hitTest:point];
+    CALayer *cell = [self.layer hitTest:point];
 
-    if ([activeCell valueForKey:@"cellLocation"]) {
-        NSLog(@"highlight a cell layer!");
+    if (cell && [cell isKindOfClass:[SBLayer class]]) {
+        activeCell = (SBLayer*)cell;
         activeCell.borderWidth = 2;
-        [activeCell setValue:[NSNumber numberWithDouble:1.5] forKeyPath:@"transform.scale"];
+        activeCell.scale = 1.4;
     }
 }
 
@@ -97,13 +97,14 @@
     CGPoint point = [touch locationInView:nil];
     if (activeCell) {
         activeCell.borderWidth = 0;
-        [activeCell setValue:[NSNumber numberWithDouble:1.0] forKeyPath:@"transform.scale"];
+        activeCell.scale = 1.0;
     }
-    activeCell = [self.layer hitTest:point];
-    if ([activeCell valueForKey:@"cellLocation"]) {
-        NSLog(@"highlight a cell layer!");
+    
+    CALayer *cell = [self.layer hitTest:point];
+    if (cell && [cell isKindOfClass:[SBLayer class]]) {
+        activeCell = (SBLayer*)cell;
         activeCell.borderWidth = 2;
-        [activeCell setValue:[NSNumber numberWithDouble:1.5] forKeyPath:@"transform.scale"];
+        activeCell.scale = 1.4;
     }
 }
 
@@ -120,7 +121,7 @@
     else
         NSLog(@"Did not hit a cell layer!");
     activeCell.borderWidth = 0;
-    [activeCell setValue:[NSNumber numberWithDouble:1.0] forKeyPath:@"transform.scale"];
+    activeCell.scale = 1.0;
     activeCell = nil;
 }
 
