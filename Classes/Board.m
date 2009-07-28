@@ -32,6 +32,7 @@
             for (int j = 0; j < rows; j++) {
                 Location *loc = [[Location alloc] initWithColumn:i row:j];
                 [grid setObject:null forKey:loc];
+                [loc release];
             }
         }
     }

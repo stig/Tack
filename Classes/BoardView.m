@@ -155,7 +155,9 @@
         
         if (!player)
             player = piece.owner;
-        uiPiece.backgroundColor = player == piece.owner ? [self red] : [self blue];
+        CGColorRef colour = player == piece.owner ? [self red] : [self blue];
+        uiPiece.backgroundColor = colour;
+        CGColorRelease(colour);
         uiPiece.frame = CGRectInset(cell.bounds, 8, 8);
         uiPiece.cornerRadius = uiPiece.bounds.size.width / 2.0;
         

@@ -49,7 +49,7 @@
         }
     }
     
-    return [moves copy];
+    return moves;
 }
 
 #pragma mark Fitness calculations
@@ -129,6 +129,7 @@
     Piece *p = [Piece new];
     p.owner = self.player;
     [board setPiece:p atLocation:move];
+    [p release];
     playerIndex = !playerIndex;
 }
 
