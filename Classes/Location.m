@@ -53,7 +53,9 @@ NSMutableArray *_cache;
 #pragma mark description
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"%u@%u", self.column, self.row];
+	static NSString *name = nil;
+	if (!name) name = [[NSString alloc] initWithFormat:@"%u@%u", self.column, self.row];
+	return name;
 }
 
 #pragma mark equality
