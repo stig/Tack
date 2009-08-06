@@ -8,7 +8,7 @@
 
 #import "Location.h"
 
-#define MAX_DIM 8
+#define CACHE_DIM 3
 NSMutableArray *_cache;
 
 @implementation Location
@@ -16,22 +16,23 @@ NSMutableArray *_cache;
 @synthesize column, row;
 
 + (void)initialize {
-	NSLog(@"%s", _cmd);
-
-	_cache = [[NSMutableArray alloc] initWithCapacity: MAX_DIM * MAX_DIM];
-	for (int i = 0; i < MAX_DIM; i++)
-		for (int j = 0; j < MAX_DIM; j++)
-			[_cache addObject:[[Location alloc] initWithColumn:i row:j]];
+	_cache = [[NSMutableArray alloc] initWithCapacity: CACHE_DIM * CACHE_DIM];
+	
+	for (int i = 0; i < CACHE_DIM; i++)
+		for (int j = 0; j < CACHE_DIM; j++) {
+			Location *loc = [[Location alloc] initWithColumn:i row:j];
+			[_cache addObject:loc];
+			[loc release];
+		}
 }
 
-
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r {
-	NSParameterAssert(c < MAX_DIM && r < MAX_DIM);
-	return [_cache objectAtIndex:c * MAX_DIM + r];
+	if (c < CACHE_DIM && r < CACHE_DIM)
+		return [_cache objectAtIndex:c * CACHE_DIM + r];
+	return [[[self alloc] initWithColumn:c row:r] autorelease];
 }
 
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r {
-	NSParameterAssert(c < MAX_DIM && r < MAX_DIM);
     self = [super init];
     if (self) {
         row = r;
@@ -64,7 +65,7 @@ NSMutableArray *_cache;
 
 // A 100x100 board is probably enough.
 - (NSUInteger)hash {
-    return self.column * MAX_DIM + self.row;
+    return self.column * CACHE_DIM + self.row;
 }
 
 @end
