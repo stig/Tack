@@ -115,6 +115,7 @@ static NSInteger scoreForLine(NSInteger line[2])
     Piece *p = [Piece new];
     p.owner = self.player;
     [board setPiece:p atLocation:move];
+	[p release];
     playerIndex = !playerIndex;
 }
 
