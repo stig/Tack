@@ -8,16 +8,30 @@
 
 #import "Location.h"
 
+#define MAX_DIM 8
+NSMutableArray *_cache;
 
 @implementation Location
 
 @synthesize column, row;
 
++ (void)initialize {
+	NSLog(@"%s", _cmd);
+
+	_cache = [[NSMutableArray alloc] initWithCapacity: MAX_DIM * MAX_DIM];
+	for (int i = 0; i < MAX_DIM; i++)
+		for (int j = 0; j < MAX_DIM; j++)
+			[_cache addObject:[[Location alloc] initWithColumn:i row:j]];
+}
+
+
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r {
-    return [[[self alloc] initWithColumn:c row:r] autorelease];
+	NSParameterAssert(c < MAX_DIM && r < MAX_DIM);
+	return [_cache objectAtIndex:c * MAX_DIM + r];
 }
 
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r {
+	NSParameterAssert(c < MAX_DIM && r < MAX_DIM);
     self = [super init];
     if (self) {
         row = r;
@@ -32,8 +46,7 @@
 }
 
 - (id)copyWithZone:(NSZone*)zone {
-   return [[[self class] alloc] initWithColumn:self.column
-                                           row:self.row];
+	return [self retain];
 }
 
 #pragma mark description
@@ -45,14 +58,13 @@
 #pragma mark equality
 
 - (BOOL)isEqual:(id)obj {
-    return [obj isMemberOfClass:[self class]]
-        && [self hash] == [obj hash];
+    return (id)self == obj || [obj isMemberOfClass:[Location class]] && [self hash] == [obj hash];
 }
 
 
 // A 100x100 board is probably enough.
 - (NSUInteger)hash {
-    return self.column * 100 + self.row;
+    return self.column * MAX_DIM + self.row;
 }
 
 @end

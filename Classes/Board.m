@@ -30,7 +30,7 @@
         id null = [NSNull null];
         for (int i = 0; i < columns; i++) {			
             for (int j = 0; j < rows; j++) {
-                Location *loc = [[Location alloc] initWithColumn:i row:j];
+                Location *loc = [Location locationWithColumn:i row:j];
                 [grid setObject:null forKey:loc];
             }
         }

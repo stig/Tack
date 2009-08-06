@@ -42,7 +42,7 @@
     
     for (int r = 0; r < model.rows; r++) {
         for (int c = 0; c < model.columns; c++) {
-            Location *loc = [[Location alloc] initWithColumn:c row:r];
+            Location *loc = [Location locationWithColumn:c row:r];
             CALayer *cell = [cells pieceAtLocation:loc];
             if (!cell) {
                 cell = [CALayer layer];
