@@ -80,9 +80,10 @@
 }
 
 - (void)setPiece:(id)piece atLocation:(Location*)loc {
-    [self willChangeValueForKey:[loc description]];
+	NSString *d = [loc description];
+    [self willChangeValueForKey:d];
     [grid setObject:piece forKey:loc];
-    [self didChangeValueForKey:[loc description]];
+    [self didChangeValueForKey:d];
 }
 
 #pragma mark Add / remove observers
