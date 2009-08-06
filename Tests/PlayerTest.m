@@ -14,25 +14,11 @@
 @implementation PlayerTest
 
 - (void) testCopy {
-    NSString *name = @"One";
-    Piece *a = [Piece new];
-    
+    NSString *name = @"One";    
     Player *one = [[Player alloc] initWithName:name];
-    [one.pieces addObject:a];
-    
     Player *two = [one copy];
     STAssertNotNil(two, nil);
     STAssertEqualObjects(two.name, name, nil);
-    STAssertEqualObjects([two.pieces anyObject], a, nil);
-
-    // check that set of pieces is individual from now on
-    [one.pieces addObject:[Piece new]];
-    STAssertEquals([one.pieces count], (NSUInteger)2, nil);
-    STAssertEquals([two.pieces count], (NSUInteger)1, nil);
-    
-    [one.pieces removeObject:a];
-    STAssertEquals([one.pieces count], (NSUInteger)1, nil);
-    STAssertEquals([two.pieces count], (NSUInteger)1, nil);
 }
 
 @end
