@@ -56,7 +56,7 @@
                 cell.cornerRadius = 4;
                 [cell setValue:loc forKey:@"cellLocation"];
 
-                CGFloat cellColour[] = { 0.0, 0.0, 0.0, 0.3 * ((c + r) & 1) };
+                CGFloat cellColour[] = { 0.0, 0.2 * (1 + ((c + r) & 1)), 0.0, 1.0 };
                 cell.backgroundColor = CGColorCreate(space, cellColour);
                 cell.borderColor = [self yellow];
                 
@@ -88,6 +88,7 @@
         activeCell = (SBLayer*)cell;
         activeCell.borderWidth = 2;
         activeCell.scale = 1.4;
+		activeCell.zPosition = 1;
     }
 }
 
@@ -98,6 +99,8 @@
     if (activeCell) {
         activeCell.borderWidth = 0;
         activeCell.scale = 1.0;
+		activeCell.zPosition = 0;
+
     }
     
     CALayer *cell = [self.layer hitTest:point];
@@ -105,6 +108,7 @@
         activeCell = (SBLayer*)cell;
         activeCell.borderWidth = 2;
         activeCell.scale = 1.4;
+		activeCell.zPosition = 1;
     }
 }
 
@@ -122,6 +126,7 @@
         NSLog(@"Did not hit a cell layer!");
     activeCell.borderWidth = 0;
     activeCell.scale = 1.0;
+	activeCell.zPosition = 0;
     activeCell = nil;
 }
 
