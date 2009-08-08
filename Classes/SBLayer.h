@@ -8,8 +8,12 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface SBLayer : CALayer
+@interface SBLayer : CALayer {
+	BOOL highlighted;
+}
 
 @property(assign) CGFloat scale;
+
+@property(getter=isHighlighted) BOOL highlighted;
 
 @end
