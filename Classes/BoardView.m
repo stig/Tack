@@ -76,6 +76,19 @@
     }
 }
 
+#pragma mark UI hacks
+
+- (void)setCell:(SBLayer*)cell highlight:(BOOL)hl_ {
+	cell.highlighted = hl_;
+	if (hl_) {
+		cell.scale = 1.4;
+		cell.zPosition++;
+	} else {
+		cell.scale = 1.0;
+		cell.zPosition = 0;
+	}
+}
+
 # pragma mark Touches
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -86,9 +99,8 @@
 
     if (cell && [cell isKindOfClass:[SBLayer class]]) {
         activeCell = (SBLayer*)cell;
-        activeCell.borderWidth = 2;
-        activeCell.scale = 1.4;
-		activeCell.zPosition = 1;
+        [self setCell:activeCell highlight:YES];
+
     }
 }
 
@@ -96,19 +108,13 @@
     NSLog(@"touchesMoved:withEvent:");
     UITouch *touch = [touches anyObject];    
     CGPoint point = [touch locationInView:nil];
-    if (activeCell) {
-        activeCell.borderWidth = 0;
-        activeCell.scale = 1.0;
-		activeCell.zPosition = 0;
-
-    }
+    if (activeCell)
+        [self setCell:activeCell highlight:NO];
     
     CALayer *cell = [self.layer hitTest:point];
     if (cell && [cell isKindOfClass:[SBLayer class]]) {
-        activeCell = (SBLayer*)cell;
-        activeCell.borderWidth = 2;
-        activeCell.scale = 1.4;
-		activeCell.zPosition = 1;
+		activeCell = (SBLayer*)cell;
+		[self setCell:activeCell highlight:YES];
     }
 }
 
@@ -124,9 +130,7 @@
         NSLog(@"Cell already occupied!");
     else
         NSLog(@"Did not hit a cell layer!");
-    activeCell.borderWidth = 0;
-    activeCell.scale = 1.0;
-	activeCell.zPosition = 0;
+	[self setCell:activeCell highlight:NO];
     activeCell = nil;
 }
 

@@ -11,6 +11,8 @@
 
 @implementation SBLayer
 
+@synthesize highlighted;
+
 - (CGFloat)scale {
     NSNumber *scale = [self valueForKeyPath: @"transform.scale"];
     return scale.floatValue;
@@ -19,6 +21,10 @@
 - (void)setScale:(CGFloat)scale {
     [self setValue: [NSNumber numberWithFloat: scale]
         forKeyPath: @"transform.scale"];
+}
+
+- (void)setHighlighted:(BOOL)highlighted_ {
+	self.borderWidth = (highlighted = highlighted_) ? 2 : 0;
 }
 
 @end
