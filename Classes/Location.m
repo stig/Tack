@@ -8,13 +8,28 @@
 
 #import "Location.h"
 
+#define CACHE_DIM 3
+NSMutableArray *_cache;
 
 @implementation Location
 
 @synthesize column, row;
 
++ (void)initialize {
+	_cache = [[NSMutableArray alloc] initWithCapacity: CACHE_DIM * CACHE_DIM];
+	
+	for (int i = 0; i < CACHE_DIM; i++)
+		for (int j = 0; j < CACHE_DIM; j++) {
+			Location *loc = [[Location alloc] initWithColumn:i row:j];
+			[_cache addObject:loc];
+			[loc release];
+		}
+}
+
 + (id)locationWithColumn:(NSUInteger)c row:(NSUInteger)r {
-    return [[[self alloc] initWithColumn:c row:r] autorelease];
+	if (c < CACHE_DIM && r < CACHE_DIM)
+		return [_cache objectAtIndex:c * CACHE_DIM + r];
+	return [[[self alloc] initWithColumn:c row:r] autorelease];
 }
 
 - (id)initWithColumn:(NSUInteger)c row:(NSUInteger)r {
@@ -32,8 +47,7 @@
 }
 
 - (id)copyWithZone:(NSZone*)zone {
-   return [[[self class] alloc] initWithColumn:self.column
-                                           row:self.row];
+	return [self retain];
 }
 
 #pragma mark description
@@ -45,14 +59,13 @@
 #pragma mark equality
 
 - (BOOL)isEqual:(id)obj {
-    return [obj isMemberOfClass:[self class]]
-        && [self hash] == [obj hash];
+    return (id)self == obj || [obj isMemberOfClass:[Location class]] && [self hash] == [obj hash];
 }
 
 
 // A 100x100 board is probably enough.
 - (NSUInteger)hash {
-    return self.column * 100 + self.row;
+    return self.column * CACHE_DIM + self.row;
 }
 
 @end

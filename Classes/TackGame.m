@@ -54,72 +54,58 @@
 
 #pragma mark Fitness calculations
 
-- (NSInteger)scoreForLines:(NSArray*)lines forPlayer:(Player*)player {
-    NSInteger totalScore = 0;
-    for (NSArray *line in lines) {
-        NSInteger score = 0;
-        for (Piece *piece in line) {        
-            if (![piece.owner isEqual:player]) {
-                score = 0;
-                break;
-            }
-            score *= 10;
-            score++;
-        }
-        totalScore += score;
-    }
-    return totalScore;
+static NSInteger scoreForLine(NSInteger line[2])
+{
+	if (line[0])
+		return 0;
+	
+	NSInteger score = 0;
+	for (int i = 0; i < line[1]; i++) {
+		score *= 10;
+		score++;
+	}
+	return score;
 }
 
+- (NSInteger)scoreForPlayer:(Player*)player {
+    NSInteger totalScore = 0;
 
-- (NSArray*)potentialScoreLines {
-    NSMutableArray *lines = [NSMutableArray arrayWithCapacity:8];
-    NSMutableArray *diagonal1 = [[NSMutableArray alloc] initWithCapacity:3];
-    NSMutableArray *diagonal2 = [[NSMutableArray alloc] initWithCapacity:3];
+	NSInteger ld1[2] = {0};
+	NSInteger ld2[2] = {0};
 
     Piece *p;
     for (int c = 0; c < board.columns; c++) {
-        NSMutableArray *horisontal = [[NSMutableArray alloc] initWithCapacity:3];
-        NSMutableArray *vertical = [[NSMutableArray alloc] initWithCapacity:3];
+		NSInteger lh[2] = {0};
+		NSInteger lv[2] = {0};
 
         Location *d1 = [Location locationWithColumn:c row:c];
         if (p = [board pieceAtLocation: d1])
-            [diagonal1 addObject: p];
-
+			ld1[[p.owner isEqual:player]]++;
+		
         Location *d2 = [Location locationWithColumn:2-c row:c];
         if (p = [board pieceAtLocation: d2])
-            [diagonal2 addObject: p];
+			ld2[[p.owner isEqual:player]]++;
 
         for (int r = 0; r < board.rows; r++) {
             Location *h = [Location locationWithColumn:r row:c];        
             if (p = [board pieceAtLocation: h])
-                [horisontal addObject: p];
+				lh[[p.owner isEqual:player]]++;
 
             Location *v = [Location locationWithColumn:c row:r];
             if (p = [board pieceAtLocation: v])
-                [vertical addObject: p];
+				lv[[p.owner isEqual:player]]++;
         }
-        
-        if (horisontal.count)
-            [lines addObject:horisontal];
-        if (vertical.count)
-            [lines addObject:vertical];
-        [horisontal release];
-        [vertical release];
+
+        totalScore += scoreForLine(lh);
+        totalScore += scoreForLine(lv);
     }
-    if (diagonal1.count)
-        [lines addObject:diagonal1];
-    if (diagonal2.count)
-        [lines addObject:diagonal2];
-    [diagonal1 release];
-    [diagonal2 release];
-    return lines;
+	totalScore += scoreForLine(ld1);
+	totalScore += scoreForLine(ld2);
+    return totalScore;
 }
 
 - (NSInteger)fitness {
-    NSArray *lines = [self potentialScoreLines];
-    return [self scoreForLines:lines forPlayer:self.player]
-         - [self scoreForLines:lines forPlayer:self.opponent];
+    return [self scoreForPlayer:self.player] - [self scoreForPlayer:self.opponent];
 }
 
 #pragma mark Perform & undo moves

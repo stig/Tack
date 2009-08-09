@@ -30,7 +30,7 @@
         id null = [NSNull null];
         for (int i = 0; i < columns; i++) {			
             for (int j = 0; j < rows; j++) {
-                Location *loc = [[Location alloc] initWithColumn:i row:j];
+                Location *loc = [Location locationWithColumn:i row:j];
                 [grid setObject:null forKey:loc];
                 [loc release];
             }
@@ -81,9 +81,10 @@
 }
 
 - (void)setPiece:(id)piece atLocation:(Location*)loc {
-    [self willChangeValueForKey:[loc description]];
+	NSString *d = [loc description];
+    [self willChangeValueForKey:d];
     [grid setObject:piece forKey:loc];
-    [self didChangeValueForKey:[loc description]];
+    [self didChangeValueForKey:d];
 }
 
 #pragma mark Add / remove observers

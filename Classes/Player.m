@@ -12,7 +12,6 @@
 @implementation Player
 
 @synthesize name;
-@synthesize pieces;
 
 - (id)initWithName:(NSString*)n {
     self = [super init];
@@ -28,9 +27,7 @@
 }
 
 - (id)copyWithZone:(NSZone*)zone {
-    Player *copy = [[[self class] alloc] initWithName:self.name];
-    copy.pieces = [pieces mutableCopy];
-    return copy;
+    return [[[self class] alloc] initWithName:self.name];
 }
 
 - (BOOL)isEqual:(id)obj {

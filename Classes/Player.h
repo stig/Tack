@@ -17,7 +17,6 @@
 }
 
 @property(copy) NSString *name;
-@property(retain) NSMutableSet *pieces;
 
 - (id)initWithName:(NSString*)name;
 
