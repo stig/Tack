@@ -1,14 +1,13 @@
 ---
-title: Home
+title: Tack for iPhone
 layout: wikistyle
 ---
 
 Tack for iPhone
 ===============
 
-This is a test.
 
 
-subheading
+sub heading
 ----------
 
