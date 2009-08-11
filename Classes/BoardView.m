@@ -17,6 +17,8 @@
     self.layer.backgroundColor = CGColorCreate(space, green);
 }
 
+#pragma mark Colours
+
 - (CGColorRef)yellow {
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     CGFloat rgba[] = { 0.7, 0.7, 0.0, 1.0 };
@@ -34,6 +36,8 @@
     CGFloat rgba[] = { 0.0, 0.0, 0.7, 1.0 };
     return CGColorCreate(space, rgba);
 }
+
+#pragma mark Initialisation
 
 - (void)createCells {
     
