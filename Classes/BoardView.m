@@ -109,7 +109,7 @@
     if (activeCell)
         [self setCell:activeCell highlight:NO];
     
-    CALayer *cell = [self.layer hitTest:point];
+    CALayer *cell = [[self.layer.presentationLayer hitTest:point] modelLayer];
     if (cell && [cell isKindOfClass:[SBLayer class]]) {
 		activeCell = (SBLayer*)cell;
 		[self setCell:activeCell highlight:YES];
