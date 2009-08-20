@@ -14,9 +14,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class Board;
-@class TackGame;
-
 @interface TackGameTest : SenTestCase {
     TackGame *game;
     NSMutableArray *observed;

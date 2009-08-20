@@ -15,24 +15,44 @@
 		2899E5220DE3E06400AC0155 /* TackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TackViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TackViewController.m */; };
+		BC03CE6B103DECB900CEACA7 /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC03CE66103DECA700CEACA7 /* libModel.a */; };
+		BC03CE6E103DECCB00CEACA7 /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC03CE66103DECA700CEACA7 /* libModel.a */; };
+		BC03CE6F103DECEA00CEACA7 /* Location.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1D5B311001328F0068B45A /* Location.h */; };
+		BC03CE70103DECEB00CEACA7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
+		BC03CE71103DECEB00CEACA7 /* Piece.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1D59231000E94D0068B45A /* Piece.h */; };
+		BC03CE72103DECEC00CEACA7 /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
+		BC03CE73103DECEC00CEACA7 /* Player.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1D59211000E94D0068B45A /* Player.h */; };
+		BC03CE74103DECED00CEACA7 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
+		BC03CE75103DECEE00CEACA7 /* TackGame.h in Headers */ = {isa = PBXBuildFile; fileRef = BCF5A5D31006860400B04A83 /* TackGame.h */; };
+		BC03CE76103DECEE00CEACA7 /* TackGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D41006860400B04A83 /* TackGame.m */; };
+		BC03CE86103DED3D00CEACA7 /* Board.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1D59251000E94D0068B45A /* Board.h */; };
+		BC03CE87103DED3E00CEACA7 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
 		BC0D3F64101D061200415580 /* SBLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0D3F63101D061200415580 /* SBLayer.m */; };
-		BC1D59271000E94D0068B45A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
-		BC1D59281000E94D0068B45A /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
 		BC1D59291000E94D0068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
 		BC1D592D1000E9570068B45A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D592C1000E9570068B45A /* BoardView.m */; };
 		BC1D59361000E9860068B45A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1D59351000E9860068B45A /* QuartzCore.framework */; };
 		BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5AA5100127E80068B45A /* PlayerTest.m */; };
-		BC1D5AE010012B040068B45A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59221000E94D0068B45A /* Player.m */; };
-		BC1D5AF610012E690068B45A /* Piece.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59241000E94D0068B45A /* Piece.m */; };
 		BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B2F100131EC0068B45A /* PieceTest.m */; };
-		BC1D5B331001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
-		BC1D5B341001328F0068B45A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5B321001328F0068B45A /* Location.m */; };
 		BC1D5BAE100162760068B45A /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D5BAD100162760068B45A /* BoardTest.m */; };
-		BC1D5BAF100162840068B45A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D59261000E94D0068B45A /* Board.m */; };
-		BCF5A5D51006860400B04A83 /* TackGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D41006860400B04A83 /* TackGame.m */; };
-		BCF5A5D61006860400B04A83 /* TackGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D41006860400B04A83 /* TackGame.m */; };
 		BCF5A5D91006861900B04A83 /* TackGameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF5A5D81006861900B04A83 /* TackGameTest.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC03CE69103DECB400CEACA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC03CE65103DECA700CEACA7 /* Model */;
+			remoteInfo = Model;
+		};
+		BC03CE6C103DECC500CEACA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC03CE65103DECA700CEACA7 /* Model */;
+			remoteInfo = Model;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,6 +68,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Tack_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tack_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Tack-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tack-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BC03CE66103DECA700CEACA7 /* libModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0D3F62101D061200415580 /* SBLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBLayer.h; sourceTree = "<group>"; };
 		BC0D3F63101D061200415580 /* SBLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBLayer.m; sourceTree = "<group>"; };
 		BC1D59211000E94D0068B45A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -80,6 +101,14 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BC1D59361000E9860068B45A /* QuartzCore.framework in Frameworks */,
+				BC03CE6E103DECCB00CEACA7 /* libModel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC03CE64103DECA700CEACA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC03CE6B103DECB900CEACA7 /* libModel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +141,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Tack.app */,
 				BC1D5A4C100127960068B45A /* Tests.octest */,
+				BC03CE66103DECA700CEACA7 /* libModel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,6 +231,21 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		BC03CE62103DECA700CEACA7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC03CE6F103DECEA00CEACA7 /* Location.h in Headers */,
+				BC03CE71103DECEB00CEACA7 /* Piece.h in Headers */,
+				BC03CE73103DECEC00CEACA7 /* Player.h in Headers */,
+				BC03CE75103DECEE00CEACA7 /* TackGame.h in Headers */,
+				BC03CE86103DED3D00CEACA7 /* Board.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* Tack */ = {
 			isa = PBXNativeTarget;
@@ -212,11 +258,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC03CE6D103DECC500CEACA7 /* PBXTargetDependency */,
 			);
 			name = Tack;
 			productName = Tack;
 			productReference = 1D6058910D05DD3D006BFB54 /* Tack.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BC03CE65103DECA700CEACA7 /* Model */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC03CE96103DED5500CEACA7 /* Build configuration list for PBXNativeTarget "Model" */;
+			buildPhases = (
+				BC03CE62103DECA700CEACA7 /* Headers */,
+				BC03CE63103DECA700CEACA7 /* Sources */,
+				BC03CE64103DECA700CEACA7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Model;
+			productName = Model;
+			productReference = BC03CE66103DECA700CEACA7 /* libModel.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		BC1D5A4B100127960068B45A /* Tests */ = {
 			isa = PBXNativeTarget;
@@ -230,6 +294,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC03CE6A103DECB400CEACA7 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -250,6 +315,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Tack */,
 				BC1D5A4B100127960068B45A /* Tests */,
+				BC03CE65103DECA700CEACA7 /* Model */,
 			);
 		};
 /* End PBXProject section */
@@ -297,13 +363,21 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TackAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* TackViewController.m in Sources */,
-				BC1D59271000E94D0068B45A /* Player.m in Sources */,
-				BC1D59281000E94D0068B45A /* Piece.m in Sources */,
 				BC1D59291000E94D0068B45A /* Board.m in Sources */,
 				BC1D592D1000E9570068B45A /* BoardView.m in Sources */,
-				BC1D5B331001328F0068B45A /* Location.m in Sources */,
-				BCF5A5D61006860400B04A83 /* TackGame.m in Sources */,
 				BC0D3F64101D061200415580 /* SBLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC03CE63103DECA700CEACA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC03CE70103DECEB00CEACA7 /* Location.m in Sources */,
+				BC03CE72103DECEC00CEACA7 /* Piece.m in Sources */,
+				BC03CE74103DECED00CEACA7 /* Player.m in Sources */,
+				BC03CE76103DECEE00CEACA7 /* TackGame.m in Sources */,
+				BC03CE87103DED3E00CEACA7 /* Board.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,19 +385,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC1D5B341001328F0068B45A /* Location.m in Sources */,
-				BC1D5AF610012E690068B45A /* Piece.m in Sources */,
 				BC1D5B30100131EC0068B45A /* PieceTest.m in Sources */,
-				BC1D5AE010012B040068B45A /* Player.m in Sources */,
 				BC1D5AA6100127E80068B45A /* PlayerTest.m in Sources */,
-				BC1D5BAF100162840068B45A /* Board.m in Sources */,
 				BC1D5BAE100162760068B45A /* BoardTest.m in Sources */,
-				BCF5A5D51006860400B04A83 /* TackGame.m in Sources */,
 				BCF5A5D91006861900B04A83 /* TackGameTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC03CE6A103DECB400CEACA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC03CE65103DECA700CEACA7 /* Model */;
+			targetProxy = BC03CE69103DECB400CEACA7 /* PBXContainerItemProxy */;
+		};
+		BC03CE6D103DECC500CEACA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC03CE65103DECA700CEACA7 /* Model */;
+			targetProxy = BC03CE6C103DECC500CEACA7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -352,6 +434,31 @@
 			};
 			name = Release;
 		};
+		BC03CE67103DECA800CEACA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = Model;
+			};
+			name = Debug;
+		};
+		BC03CE68103DECA800CEACA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = Model;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		BC1D5A4D100127970068B45A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -363,6 +470,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Tests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -387,6 +498,10 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				INFOPLIST_FILE = "Tests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -436,6 +551,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC03CE96103DED5500CEACA7 /* Build configuration list for PBXNativeTarget "Model" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC03CE67103DECA800CEACA7 /* Debug */,
+				BC03CE68103DECA800CEACA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
