@@ -6,10 +6,15 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "PlayerTest.h"
+
+
 #import "Player.h"
 #import "Piece.h"
 
+#import <SenTestingKit/SenTestingKit.h>
+
+@interface PlayerTest : SenTestCase
+@end
 
 @implementation PlayerTest
 

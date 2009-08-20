@@ -6,9 +6,13 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "BoardTest.h"
 #import "Board.h"
 #import "Location.h"
+
+#import <SenTestingKit/SenTestingKit.h>
+
+@interface BoardTest : SenTestCase
+@end
 
 @implementation BoardTest
 

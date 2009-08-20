@@ -61,17 +61,13 @@
 		BC1D59351000E9860068B45A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		BC1D59BA100111800068B45A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		BC1D5A4C100127960068B45A /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC1D5AA4100127E80068B45A /* PlayerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTest.h; sourceTree = "<group>"; };
 		BC1D5AA5100127E80068B45A /* PlayerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTest.m; sourceTree = "<group>"; };
-		BC1D5B2E100131EC0068B45A /* PieceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieceTest.h; sourceTree = "<group>"; };
 		BC1D5B2F100131EC0068B45A /* PieceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieceTest.m; sourceTree = "<group>"; };
 		BC1D5B311001328F0068B45A /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		BC1D5B321001328F0068B45A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		BC1D5BAC100162760068B45A /* BoardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTest.h; sourceTree = "<group>"; };
 		BC1D5BAD100162760068B45A /* BoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTest.m; sourceTree = "<group>"; };
 		BCF5A5D31006860400B04A83 /* TackGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TackGame.h; sourceTree = "<group>"; };
 		BCF5A5D41006860400B04A83 /* TackGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TackGame.m; sourceTree = "<group>"; };
-		BCF5A5D71006861900B04A83 /* TackGameTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TackGameTest.h; sourceTree = "<group>"; };
 		BCF5A5D81006861900B04A83 /* TackGameTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TackGameTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,13 +190,9 @@
 		BC1D5AA2100127C50068B45A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				BC1D5AA4100127E80068B45A /* PlayerTest.h */,
 				BC1D5AA5100127E80068B45A /* PlayerTest.m */,
-				BC1D5B2E100131EC0068B45A /* PieceTest.h */,
 				BC1D5B2F100131EC0068B45A /* PieceTest.m */,
-				BC1D5BAC100162760068B45A /* BoardTest.h */,
 				BC1D5BAD100162760068B45A /* BoardTest.m */,
-				BCF5A5D71006861900B04A83 /* TackGameTest.h */,
 				BCF5A5D81006861900B04A83 /* TackGameTest.m */,
 			);
 			path = Tests;

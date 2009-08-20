@@ -6,9 +6,14 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "PieceTest.h"
 #import "Piece.h"
 #import "Location.h"
+
+#import <SenTestingKit/SenTestingKit.h>
+
+@interface PieceTest : SenTestCase
+@end
+
 
 @implementation PieceTest
 

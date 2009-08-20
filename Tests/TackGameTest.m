@@ -6,12 +6,22 @@
 //  Copyright 2009 Stig Brautaset. All rights reserved.
 //
 
-#import "TackGameTest.h"
 #import "TackGame.h"
 #import "Board.h"
 #import "Player.h"
 #import "Piece.h"
 #import "Location.h"
+
+#import <SenTestingKit/SenTestingKit.h>
+
+@class Board;
+@class TackGame;
+
+@interface TackGameTest : SenTestCase {
+    TackGame *game;
+    NSMutableArray *observed;
+}
+@end
 
 @implementation TackGameTest
 
